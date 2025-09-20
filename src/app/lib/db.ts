@@ -8,7 +8,24 @@ const pool = new Pool({
   port: 5432
 });
 
-export async function query(text:string,params?:any[]){
+interface Station {
+  id: number
+  category: string
+  medianame: string
+  stream: string
+  website: string
+  frequency: string
+  location: string
+  type: string
+  hits: string
+  approved: string
+  priority: number
+  courtesy: string
+  courtesylink: string
+  medianameshort: string
+}
+
+export async function query(text: string, params?: unknown[]): Promise<Station[]> {
   const result=await pool.query(text, params);
   return result.rows
 }

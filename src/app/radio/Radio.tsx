@@ -3,33 +3,75 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./radio.module.css";
 import Image from "next/image";
 
-function Radio({ stations }: { stations: any }) {
+interface Station {
+  id: number;
+  category: string;
+  medianame: string;
+  stream: string;
+  website: string;
+  frequency: string;
+  location: string;
+  type: string;
+  hits: string;
+  approved: string;
+  priority: number;
+  courtesy: string;
+  courtesylink: string;
+  medianameshort: string;
+}
+
+// interface Station {
+//   id: number;
+//   medianame: string;
+//   location: string;
+//   type: string;
+//   frequency: string;
+//   courtesy: string;
+//   courtesylink: string;
+//   priority: number;
+// }
+
+interface RadioState {
+  showMenu: boolean;
+  audioLoading: boolean;
+  selectedMenu: string;
+  playerOn: boolean;
+  selectedStation: Station;
+}
+
+function Radio({ stations }: { stations: Station[] }) {
   const [volumeRange, setVolumeRange] = useState(10);
 
-  const [state, setState] = useState({
+  const [state, setState] = useState<RadioState>({
     showMenu: false,
     audioLoading: false,
     selectedMenu: "International",
     playerOn: false,
     selectedStation: {
       id: 0,
+      category: "",
       medianame: "",
+      stream: "",
+      website: "",
+      frequency: "",
       location: "",
       type: "",
-      frequency: "",
+      hits: "",
+      approved: "",
+      priority: 0,
       courtesy: "",
       courtesylink: "",
-      priority: 0,
+      medianameshort: "",
     },
   });
 
-  function DisplayMenu() {
+  function displayMenu() {
     updateState({
       showMenu: !state.showMenu,
     });
   }
 
-  function updateState(props: any) {
+  function updateState(props: Partial<RadioState>) {
     setState((prevState) => {
       return {
         ...prevState,
@@ -62,7 +104,7 @@ function Radio({ stations }: { stations: any }) {
   //   });
   // };
 
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   //    function setVolume(e:any){
   //     parseInt(e.target.value)===100 && window.navigator.vibrate(500);
@@ -79,7 +121,7 @@ function Radio({ stations }: { stations: any }) {
     }
   }
 
-  function doPlay(station: any) {
+  function doPlay(station: Station) {
     const audio = audioRef.current;
     if (audio?.paused || (audio?.src && audio?.src !== station.stream)) {
       updateState({
@@ -134,7 +176,9 @@ function Radio({ stations }: { stations: any }) {
   }
 
   function muteRadio() {
-    const audio: any = audioRef?.current;
+    const audio = audioRef?.current;
+    if (!audio) return;
+
     if (audio.paused) {
       audio.play();
       setState((prevState) => {
@@ -276,7 +320,7 @@ function Radio({ stations }: { stations: any }) {
           </div>
         </div>
 
-        <div onClick={DisplayMenu} className={selectedMenuItem}>
+        <div onClick={displayMenu} className={selectedMenuItem}>
           {state.selectedMenu}
         </div>
 
@@ -331,10 +375,10 @@ function Radio({ stations }: { stations: any }) {
         )}
         <div className={grid}>
           {stations
-            ?.filter((station: any) => {
+            ?.filter((station) => {
               return station.category === state.selectedMenu.toLowerCase();
             })
-            ?.map?.((station: any) => {
+            ?.map?.((station) => {
               return (
                 <React.Fragment key={station.id}>
                   <div
