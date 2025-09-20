@@ -1,0 +1,426 @@
+.radio {
+  margin: 0px;
+  height:100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-start;
+  background-color: lightslategray;
+}
+
+.lcd {
+  font-family: "Roboto";
+  border: inset 2px #666;
+  /* height:250px; */
+  background: linear-gradient(to bottom,#000000, #007bff, #000);
+  color: yellow;
+  margin: 5px 20px 5px 20px;
+  /* margin:20px 10px 10px 20px; */
+}
+
+
+
+.freqPanel {
+  /* font-family:digital; */
+  font-weight: bold;
+  line-height: 50px;
+}
+
+.frequency {
+   margin-right: 2px;
+  font-size: 35px;
+  display: flex;
+  align-items: center;
+
+}
+
+.flexRow{
+  display: flex;
+  flex-direction:row
+}
+
+.radio ul li {
+  display: flex;
+  justify-content: center;
+  line-height: 38px;
+  border-bottom: solid 1px lightseagreen;
+}
+
+.freqMode {
+  margin: 0 2px;
+  align-items: center;
+  color: aqua;
+  font-size: 16px;
+}
+
+.band {
+   margin: 0 2px;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+}
+
+.loading {
+   display: flex;
+  /* align-items: center; */
+  color: white;
+
+}
+
+.circle {
+  font-family: digital;
+  font-size:30px;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  width: 25px;
+  height:25px;
+  /* border:solid 1px #fff; */
+  border-radius:60%
+}
+
+.countDownColor{
+  font-size:12px;
+  color:red;
+  margin-left:35px;
+  /* width:20px;
+  height:20px; */
+  /* border-radius: 50%; */
+  display:flex;
+  /* border:solid 1px #005fa3; */
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+
+  -webkit-appearance: none;
+  width: -webkit-fill-available;
+   margin:8px 20px 20px 20px;
+  height: 30px;
+  /* background:linear-gradient(to right, green 4%, lawngreen 30%, yellow 46%, red 98%); */
+  background:linear-gradient(to right,#000, #007bff, red);
+  border-bottom:solid 1px silver;
+  border-right:solid 1px silver;
+   border-top:solid 1px #000;
+  border-left:solid 1px #000;
+  outline: none;
+  opacity: 1;
+  border-radius: 6px;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 43px;
+  background:#b5a264;
+  cursor: pointer;
+  border-left:solid 1px #fff;
+  border-top:solid 1px #fff;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:2px 2px 2px #000
+}
+
+.slider::-moz-range-thumb {
+  width: 60px;
+  height: 35px;
+  background: #b5a264;
+  cursor: pointer;
+}
+
+.flex {
+  display:flex;
+  align-items: center;
+}
+
+.place {
+  color: lawngreen;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.tagline {
+  color: white;
+  font-size: 18px;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: minmax(160px, 1fr) [auto-fill];
+  grid-template-columns: repeat(auto-fill, minmax(108, 1fr));
+  grid-gap: 5px;
+  margin: 5px 18px;
+  padding-bottom: 50px;
+  /* height:100vh; */
+}
+
+.radioTile {
+  display: flex;
+  justify-content: center;
+  height:60px;
+  align-items: center;
+  background: linear-gradient(to bottom, #0078d4, #005fa3); /* subtle depth */
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+  /* border-radius: 10px; */
+  border: 1px solid #004e8c;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
+    /* soft base shadow */ inset 0 1px 0 rgba(255, 255, 255, 0.3); /* top bevel highlight */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.musicGraph{
+  width: 22px;
+  height: 24px;
+  margin-left: 10
+}
+
+.titlePanel {
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+
+}
+
+
+
+.selectedRadioTile{
+   background: linear-gradient(to bottom, green, #56b000);
+  transform: translateY(1px); /* slight press effect */
+  display: flex;
+  justify-content: center;
+  height:60px;
+  color: white;
+  align-items: center;
+  font-family: "Segoe UI", sans-serif;
+  /* border-radius: 10px; */
+  border: 1px solid green;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
+   outset 0 1px 0 rgba(255, 255, 255, 0.3); 
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+/* .radioTile:focus {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+} */
+
+.mode {
+  /* appearance: none; */
+  background-color: green;
+  background-color: royalblue;
+  color: #fff;
+  border: 1px solid #ccc;
+  border: none;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 8px 40px;
+  font-size: 15px;
+  font-family: "roboto";
+  cursor: pointer;
+}
+
+
+.selectedMenuItem {
+    color: #fff;
+    cursor: pointer;
+    background:linear-gradient(#483d8b, #6a5acd);
+    border-bottom: 1px solid green;
+    justify-content: center;
+    margin: 0 20px;
+    height:60px;
+    align-items: center;;
+    /* padding: 13px; */
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex
+;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 2px;
+  margin: 2px 20px 9px 19px;
+  /* background-color: gray; */
+  /* background-color: silver; */
+  /* border: solid 1px silver; */
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px; 
+  background: linear-gradient(to bottom, darkslateblue, slateblue);
+  color: white;
+  font-family: "Segoe UI", sans-serif;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  user-select: none;
+  font-size: 15px;
+  white-space: nowrap;
+
+  /* border-radius: 4px; */
+}
+
+.menuItem:hover {
+  background-color: rebeccapurple;
+}
+
+
+
+@keyframes ldsHourglass {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+  50% {
+    transform: rotate(900deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+}
+
+.ldsHourglass {
+  display: inline-block;
+  width:5px;
+      &:after {
+        content: " ";
+      display: block;
+      border-radius: 50%;
+      width: 0;
+      height: 0;
+      margin:0 6px;
+      box-sizing: border-box;
+      border: 10px solid #fff;
+      border-color: #fff transparent #fff transparent;
+      animation: ldsHourglass 1.2s infinite;
+      }
+}
+
+.courtesy {
+  width:100%;
+  display:flex;
+  margin:0 7px;
+  font-size:14px;
+  color:#b5a264;
+  justify-content: space-between!important;
+}
+
+.courtesy a:link, .courtesy a:visited{
+  margin-left:2px;
+  font-size: 14px;
+  color:#b5a264
+}
+
+.dateTime {
+  /* font-family: digital; */
+  font-size:16px;
+  font-weight: bold;
+  color:red
+}
+
+.station {
+  font-family: arial;
+
+  color: lawngreen;
+  font-size: 25px;
+  /* font-family: arial; */
+  font-weight: bold;
+}
+
+.animatedTitle {
+  font-family: arial;
+  font-size: 25px;
+  font-weight: bold;
+  background: linear-gradient(90deg, lawngreen,hotpink, lawngreen, yellow,green, yellow,#007bff,hotpink);
+  background-size: 50% 10%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  /* animation-fill-mode: forwards; */
+  animation: shimmer 10s linear infinite alternate  both;
+  /* animation: shimmer 60s linear infinite alternate; */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+/* .animatedTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(270deg, #ff6f61, #f7c948, #6ec6ff);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flowColors 4s ease infinite;
+}
+
+@keyframes flowColors {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
+
+
+.color-cycle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: colorShift 12s linear infinite;
+}
+
+@keyframes colorShift {
+  0%   { color: green; }
+  33%  { color: blue; }
+  66%  { color: yellow; }
+  100% { color: green; }
+}
+
+
+.radioLabel{
+ /* font-family: "Segoe UI", sans-serif; */
+ color:#fff;
+  font-size:16px;
+  display:flex;
+  justify-content:center;
+ 
+/* 
+  text-shadow:
+    1px 1px 0 #000,     
+    -1px -1px 0 #fff;   */
+}
