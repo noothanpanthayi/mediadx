@@ -323,22 +323,22 @@
   width:100%;
   display:flex;
   margin:0 7px;
-  font-size:14px;
+  font-size:12px;
   color:#b5a264;
   justify-content: space-between!important;
 }
 
 .courtesy a:link, .courtesy a:visited{
   margin-left:2px;
-  font-size: 14px;
+  font-size: 12px;
   color:#b5a264
 }
 
 .dateTime {
   /* font-family: digital; */
-  font-size:16px;
+  font-size:12px;
   font-weight: bold;
-  color:red
+  color:#b5a264
 }
 
 .station {
