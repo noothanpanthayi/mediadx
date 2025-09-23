@@ -323,7 +323,7 @@ function Radio({ stations }: { stations: Station[] }) {
         <div onClick={displayMenu} className={selectedMenuItem}>
          <div></div>
           <div> {state.selectedMenu}</div>
-           {state.showMenu ? <div className={arrow}>▼</div>:<div className={arrow}>▲</div>}
+           {state.showMenu ? <div className={arrow}>▲</div>:<div className={arrow}>▼</div>}
 
         </div>
          
