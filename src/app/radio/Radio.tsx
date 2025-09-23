@@ -323,10 +323,10 @@ function Radio({ stations }: { stations: Station[] }) {
         <div onClick={displayMenu} className={selectedMenuItem}>
          <div></div>
           <div> {state.selectedMenu}</div>
-           {state.showMenu ? <div>⏶</div>:<div>⏷</div>}
+           {state.showMenu ? <div className={arrow}>&#9650;</div>:<div className={arrow}>&#9660;</div>}
 
         </div>
-
+         
         {state.showMenu && (
           <div className={menu}>
             {state.selectedMenu !== "International" && (
@@ -432,5 +432,6 @@ const {
   circle,
   slider,
   radioLabel,
+  arrow
 } = styles;
 export default Radio;
