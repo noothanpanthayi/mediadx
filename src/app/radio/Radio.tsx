@@ -300,26 +300,7 @@ function Radio({ stations }: { stations: Station[] }) {
           </li>
         </ul>
 
-        <div
-          id="volumePanel"
-          style={{ margin: "0 0px", display: "flex", flexDirection: "column" }}
-        >
-          <div className={radioLabel}>Volume</div>
-          <div>
-            <input
-              onChange={(e) => {
-                setVolume(e);
-              }}
-              type="range"
-              min="1"
-              max="100"
-              step="1"
-              value={volumeRange}
-              className={slider}
-            />
-          </div>
-        </div>
-
+      
         <div onClick={displayMenu} className={selectedMenuItem}>
          <div></div>
           <div> {state.selectedMenu}</div>
@@ -398,6 +379,31 @@ function Radio({ stations }: { stations: Station[] }) {
               );
             })}
         </div>
+        <div style={{position:'absolute', bottom:0, width:'-webkit-fill-available'}}>
+<div
+          id="volumePanel"
+          style={{margin:'0 0px', padding:10,display: "flex", flexDirection: "column" }}
+        >
+          <div className={radioLabel}>Volume</div>
+          <div style={{padding:'0 10px', marginTop:'3px'}}>
+            <input
+              onChange={(e) => {
+                setVolume(e);
+              }}
+              type="range"
+              min="1"
+              max="100"
+              step="1"
+              value={volumeRange}
+              className={slider}
+            />
+          </div>
+        </div>
+          <div style={{padding:'10px',backgroundColor:'#000', color:'gray'}}>Copyright &copy; 2025</div>
+
+        </div>
+          
+
       </div>
     </>
   );

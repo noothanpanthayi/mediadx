@@ -97,8 +97,8 @@
 
   -webkit-appearance: none;
   width: -webkit-fill-available;
-   margin:8px 20px 20px 20px;
-  height: 30px;
+   /* margin:8px 20px 20px 20px; */
+  /* height: 30px; */
   /* background:linear-gradient(to right, green 4%, lawngreen 30%, yellow 46%, red 98%); */
   background:linear-gradient(to right,#000, #007bff, red);
   border-bottom:solid 1px silver;
