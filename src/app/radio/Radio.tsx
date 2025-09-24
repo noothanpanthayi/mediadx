@@ -369,6 +369,14 @@ function Radio({ stations }: { stations: Station[] }) {
                 Tamil
               </div>
             )}
+              {state.selectedMenu !== "Devotional" && (
+              <div
+                onClick={() => updateSelectedMenu("Devotional")}
+                className={menuItem}
+              >
+                Devotional
+              </div>
+            )}
 
             {/* <div className={menuItem}>&nbsp;</div>
             <div className={menuItem}>&nbsp;</div>
