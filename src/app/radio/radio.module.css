@@ -110,6 +110,7 @@
   border-radius: 6px;
   -webkit-transition: .2s;
   transition: opacity .2s;
+  height:30px;
 }
 
 .slider::-webkit-slider-thumb {

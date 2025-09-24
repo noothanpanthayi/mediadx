@@ -302,7 +302,7 @@ function Radio({ stations }: { stations: Station[] }) {
 
         <div
           id="volumePanel"
-          style={{ margin: "0 0px", display: "flex", flexDirection: "column" }}
+          style={{ margin: "3px 0px", display: "flex", flexDirection: "column" }}
         >
           <div className={radioLabel}>Volume</div>
           <div>
