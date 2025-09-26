@@ -249,7 +249,7 @@ function Radio({ stations }: { stations: Station[] }) {
                   </>
                 ) : (
                   <>
-                    <div>Streaming Audio</div>
+                    <div><b>Streaming Audio</b></div>
                   </>
                 )}
                 {/* <div>{loadingPlaying()}</div> */}
