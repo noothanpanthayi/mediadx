@@ -249,7 +249,7 @@ function Radio({ stations }: { stations: Station[] }) {
                   </>
                 ) : (
                   <>
-                    <div><b>Streaming Audio</b></div>
+                    <div className={streaming}>Streaming Audio</div>
                   </>
                 )}
                 {/* <div>{loadingPlaying()}</div> */}
@@ -413,6 +413,7 @@ function Radio({ stations }: { stations: Station[] }) {
 
 const {
   frequency,
+  streaming,
   lcd,
   radio,
   station,

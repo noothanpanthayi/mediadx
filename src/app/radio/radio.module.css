@@ -23,6 +23,7 @@
 
 .freqPanel {
   /* font-family:digital; */
+  font-family:arial;
   font-weight: bold;
   line-height: 50px;
 }
@@ -140,14 +141,14 @@
 }
 
 .place {
-  color: deeppink;
+  color: lime;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .tagline {
   color: white;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -160,6 +161,11 @@
   margin: 5px 18px;
   padding-bottom: 50px;
   /* height:100vh; */
+}
+
+.streaming {
+  color:yellow;
+  font-size:20px
 }
 
 .radioTile {
