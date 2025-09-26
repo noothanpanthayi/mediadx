@@ -237,7 +237,9 @@ function Radio({ stations }: { stations: Station[] }) {
                 {state.selectedStation.frequency ? (
                   <>
                     <div className={frequency}>
-                      {state.selectedStation.frequency.split(" ")[0]}
+                      <div>&nbsp;</div>
+                    <div>{state.selectedStation.frequency.split(" ")[0]}</div>
+                 
                     </div>
                     <div className={freqMode}>
                       {state.selectedStation.frequency.split(" ")[1]}
@@ -253,7 +255,7 @@ function Radio({ stations }: { stations: Station[] }) {
                   </>
                 )}
                 {/* <div>{loadingPlaying()}</div> */}
-                {!state.audioLoading && state.playerOn && (
+                {!state.audioLoading && state.playerOn ? 
                   <div>
                     <Image
                       src={"/musicgraph.gif"}
@@ -263,8 +265,14 @@ function Radio({ stations }: { stations: Station[] }) {
                       className={musicGraph}
                       priority={true}
                     />
+
                   </div>
-                )}
+                  : 
+                  
+                    !state.audioLoading && <div style={{color:'red',fontSize:'23px'}}>&#128263;</div>
+                  
+                
+                }
                 {state.audioLoading && <div className={ldsHourglass}></div>}
                 {state.audioLoading && (
                   <div className={countDownColor}>
@@ -323,7 +331,7 @@ function Radio({ stations }: { stations: Station[] }) {
         <div onClick={displayMenu} className={selectedMenuItem}>
          <div></div>
           <div> {state.selectedMenu}</div>
-           {state.showMenu ? <div className={arrow}>▼</div>:<div className={arrow}>▲</div>}
+           {state.showMenu ? <div className={arrow}>▲⏶</div>:<div className={arrow}>▼</div>}
 
         </div>
          
