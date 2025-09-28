@@ -238,8 +238,7 @@ function Radio({ stations }: { stations: Station[] }) {
                   <>
                     <div className={frequency}>
                       <div>&nbsp;</div>
-                    <div>{state.selectedStation.frequency.split(" ")[0]}</div>
-                 
+                      <div>{state.selectedStation.frequency.split(" ")[0]}</div>
                     </div>
                     <div className={freqMode}>
                       {state.selectedStation.frequency.split(" ")[1]}
@@ -255,7 +254,7 @@ function Radio({ stations }: { stations: Station[] }) {
                   </>
                 )}
                 {/* <div>{loadingPlaying()}</div> */}
-                {!state.audioLoading && state.playerOn ? 
+                {!state.audioLoading && state.playerOn ? (
                   <div>
                     <Image
                       src={"/musicgraph.gif"}
@@ -265,14 +264,14 @@ function Radio({ stations }: { stations: Station[] }) {
                       className={musicGraph}
                       priority={true}
                     />
-
                   </div>
-                  : 
-                  
-                    !state.audioLoading && <div style={{color:'red',fontSize:'23px'}}>&#128263;</div>
-                  
-                
-                }
+                ) : (
+                  !state.audioLoading && (
+                    <div style={{ color: "red", fontSize: "23px" }}>
+                      &#128263;
+                    </div>
+                  )
+                )}
                 {state.audioLoading && <div className={ldsHourglass}></div>}
                 {state.audioLoading && (
                   <div className={countDownColor}>
@@ -310,7 +309,11 @@ function Radio({ stations }: { stations: Station[] }) {
 
         <div
           id="volumePanel"
-          style={{ margin: "3px 0px", display: "flex", flexDirection: "column" }}
+          style={{
+            margin: "3px 0px",
+            display: "flex",
+            flexDirection: "column",
+          }}
         >
           <div className={radioLabel}>Volume</div>
           <div>
@@ -329,12 +332,37 @@ function Radio({ stations }: { stations: Station[] }) {
         </div>
 
         <div onClick={displayMenu} className={selectedMenuItem}>
-         <div></div>
+          <div></div>
           <div> {state.selectedMenu}</div>
-           {state.showMenu ? <div className={arrow}>▲⏶</div>:<div className={arrow}>▼</div>}
-
+          {state.showMenu ? (
+            <div className={arrow}>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path d="M2 11l6-6 6 6H2z" />
+              </svg>
+            </div>
+          ) : (
+            <div className={arrow}>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path d="M2 5l6 6 6-6H2z" />
+              </svg>
+            </div>
+          )}
         </div>
-         
+
         {state.showMenu && (
           <div className={menu}>
             {state.selectedMenu !== "International" && (
@@ -351,6 +379,14 @@ function Radio({ stations }: { stations: Station[] }) {
                 className={menuItem}
               >
                 Music
+              </div>
+            )}
+            {state.selectedMenu !== "Artists" && (
+              <div
+                onClick={() => updateSelectedMenu("Artists")}
+                className={menuItem}
+              >
+                Artists
               </div>
             )}
             {state.selectedMenu !== "Hindi" && (
@@ -377,7 +413,7 @@ function Radio({ stations }: { stations: Station[] }) {
                 Tamil
               </div>
             )}
-              {state.selectedMenu !== "Devotional" && (
+            {state.selectedMenu !== "Devotional" && (
               <div
                 onClick={() => updateSelectedMenu("Devotional")}
                 className={menuItem}
@@ -449,6 +485,6 @@ const {
   circle,
   slider,
   radioLabel,
-  arrow
+  arrow,
 } = styles;
 export default Radio;
