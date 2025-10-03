@@ -106,11 +106,6 @@ function Radio({ stations }: { stations: Station[] }) {
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  //    function setVolume(e:any){
-  //     parseInt(e.target.value)===100 && window.navigator.vibrate(500);
-  //     setVolumeRange(e.target.value);
-  //     audioRef?.current?.volume=volumeRange/100;
-  // }
 
   function setVolume(e: React.ChangeEvent<HTMLInputElement>) {
     const newVolume = parseInt(e.target.value);
@@ -293,7 +288,7 @@ function Radio({ stations }: { stations: Station[] }) {
           <li>
             <div className={courtesy}>
               <div>
-                <strong>Courtesy:</strong>
+                Courtesy:
                 <a
                   onClick={(e) => e?.stopPropagation()}
                   target="_blank"
@@ -307,7 +302,7 @@ function Radio({ stations }: { stations: Station[] }) {
           </li>
         </ul>
 
-        <div
+        {/* <div
           id="volumePanel"
           style={{
             margin: "3px 0px",
@@ -329,7 +324,7 @@ function Radio({ stations }: { stations: Station[] }) {
               className={slider}
             />
           </div>
-        </div>
+        </div> */}
 
         <div onClick={displayMenu} className={selectedMenuItem}>
           <div></div>
@@ -450,6 +445,32 @@ function Radio({ stations }: { stations: Station[] }) {
               );
             })}
         </div>
+         <div className={footerSection}>
+          <div className={volumeSection}>
+             <div
+          id="volumePanel"
+        
+        >
+          {/* <div className={radioLabel}>Volume</div> */}
+          <div>
+            <input
+              onChange={(e) => {
+                setVolume(e);
+              }}
+              type="range"
+              min="1"
+              max="100"
+              step="1"
+              value={volumeRange}
+              className={slider}
+            />
+          </div>
+        </div>
+          </div>
+          <div className={footer}>
+            @2024 Media DX
+          </div>
+         </div>
       </div>
     </>
   );
@@ -486,5 +507,8 @@ const {
   slider,
   radioLabel,
   arrow,
+  footer,
+  footerSection,
+  volumeSection,
 } = styles;
 export default Radio;

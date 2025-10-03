@@ -17,6 +17,7 @@
 
 html,
 body {
+    height:100vh;
   /* overflow: hidden; */
   /* background-color:#e0e0f8; */
   background-color:black;
@@ -25,7 +26,6 @@ body {
 
 body {
   color: var(--foreground);
-  /* background: var(--background); */
   /* background-color:gray */
 
   font-family: Arial, Helvetica, sans-serif;
@@ -33,7 +33,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   max-width: 1024px;
   margin:0 auto;
- 
+   height:100vh;
 }
 
 * {
