@@ -209,12 +209,13 @@ function Radio({ stations }: { stations: Station[] }) {
     <>
       <audio ref={audioRef} />
       <div className={radio}>
+        <div className={headerSection}>
         <div className={titlePanel}>
           <div>Media DX</div>
           <div></div>
           <div>HD Radio</div>
         </div>
-        <ul onClick={muteRadio} className={lcd}>
+        <ul onClick={muteRadio} className={lcd}> 
           {/* <li className={station}> */}
           <li
             className={
@@ -356,6 +357,8 @@ function Radio({ stations }: { stations: Station[] }) {
               </svg>
             </div>
           )}
+        </div>
+
         </div>
 
         {state.showMenu && (
@@ -510,5 +513,6 @@ const {
   footer,
   footerSection,
   volumeSection,
+  headerSection,
 } = styles;
 export default Radio;
