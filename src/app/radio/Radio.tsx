@@ -454,7 +454,7 @@ function Radio({ stations }: { stations: Station[] }) {
           id="volumePanel"
         
         >
-          {/* <div className={radioLabel}>Volume</div> */}
+          <div className={radioLabel}>Volume</div>
           <div>
             <input
               onChange={(e) => {

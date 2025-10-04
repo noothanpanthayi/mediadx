@@ -120,7 +120,7 @@
 
   -webkit-appearance: none;
   width: -webkit-fill-available;
-   margin:8px 20px 20px 20px;
+   margin:15px 20px 20px 20px;
   /* height: 30px; */
   /* background:linear-gradient(to right, green 4%, lawngreen 30%, yellow 46%, red 98%); */
   background:linear-gradient(to right,#000, #007bff, red);
@@ -133,14 +133,14 @@
   border-radius: 6px;
   -webkit-transition: .2s;
   transition: opacity .2s;
-  height:30px;
+  height:20px;
 }
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 80px;
-  height: 43px;
+  height: 40px;
   background:#b5a264;
   cursor: pointer;
   border-left:solid 1px #fff;
@@ -175,25 +175,18 @@
 }
 
 .grid {
-  flex:1 1 auto;
-   overflow-y: auto;
-   align-content: start;
-   min-height:0;
-  /* align-content: start;
-  flex:1 1 auto;
-  overflow:auto;
-  height:webkit-fill-available;  */
-  /* height:webkit-fill-available;     
-  overflow-y: auto; */
+  height:webkit-fill-available; 
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: minmax(160px, 1fr) [auto-fill];
   grid-template-columns: repeat(auto-fill, minmax(108, 1fr));
   grid-gap: 5px;
   margin: 5px 18px;
-  padding-bottom: 50px;
+  padding-bottom:  150px;
   margin-top:300px;
-  /* height:100vh; */
+  height:100vh;
+  /* overflow-y: auto; */
+  height:100vh;
 }
 
 .streaming {
@@ -456,11 +449,13 @@
 
 .radioLabel{
  /* font-family: "Segoe UI", sans-serif; */
- color:#fff;
+ color:#b5a264;
+ color:#ddd;
  margin:1px 0 2px 0;
-  font-size:16px;
+  font-size:14px;
   display:flex;
   justify-content:center;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #555;
  
 /* 
   text-shadow:
@@ -488,7 +483,9 @@
 
 .footer {
   padding:10px 25px;
-  background: linear-gradient(to bottom,#000000, darkgreen, #000);
+  background: linear-gradient(to bottom,darkblue, #007bff, #000);
+  font-size:12px;
+  /* background-color: darkblue; */
   color:white;
 }
 
@@ -502,7 +499,7 @@
             /* border:solid 1px #fff; */
             /* border-radius:8px; */
             margin-top:10px;
-            padding-top:20px;
+            padding-top:10px;
 }
 
 .volume {
