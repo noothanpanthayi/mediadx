@@ -359,7 +359,7 @@ function Radio({ stations }: { stations: Station[] }) {
           )}
         </div>
 
-        </div>
+       
 
         {state.showMenu && (
           <div className={menu}>
@@ -426,6 +426,8 @@ function Radio({ stations }: { stations: Station[] }) {
             <div className={menuItem}>&nbsp;</div> */}
           </div>
         )}
+         </div>
+        <div className={scrollable}>
         <div className={grid}>
           {stations
             ?.filter((station) => {
@@ -447,6 +449,7 @@ function Radio({ stations }: { stations: Station[] }) {
                 </React.Fragment>
               );
             })}
+        </div>
         </div>
          <div className={footerSection}>
           <div className={volumeSection}>
@@ -514,5 +517,6 @@ const {
   footerSection,
   volumeSection,
   headerSection,
+  scrollable
 } = styles;
 export default Radio;

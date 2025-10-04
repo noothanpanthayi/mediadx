@@ -1,7 +1,7 @@
 .headerSection {
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  /* left: 50%;
+  transform: translateX(-50%); */
   top: 0;
   width: 100%;
   max-width: 1024px;
@@ -173,6 +173,20 @@
   font-size: 18px;
   font-weight: bold;
 }
+.scrollable {
+  flex:1 1 auto;
+  overflow-y: auto;
+    padding-bottom: 95px;
+  /* align-content: start; */
+  /* min-height:0; */
+  /* align-content: start; */
+  /* align-content: start;
+  flex:1 1 auto;
+  overflow:auto; */
+  /* height:webkit-fill-available;  */
+  /* height:webkit-fill-available;     
+  overflow-y: auto; */
+}
 
 .grid {
   /* flex:1 1 auto;
@@ -180,10 +194,10 @@
    align-content: start; */
    /* min-height:0; */
   /* align-content: start; */
-  align-content: start;
+  /* align-content: start;
   flex:1 1 auto;
-  overflow:auto;
-  height:webkit-fill-available; 
+  overflow:auto; */
+  /* height:webkit-fill-available;  */
   /* height:webkit-fill-available;     
   overflow-y: auto; */
   display: -ms-grid;
@@ -192,7 +206,7 @@
   grid-template-columns: repeat(auto-fill, minmax(108, 1fr));
   grid-gap: 5px;
   margin: 5px 18px;
-  padding-bottom: 60px;
+
   margin-top:300px;
 }
 
@@ -292,7 +306,7 @@
 .menu {
   position:relative;
   z-index:1000;
-  top:295px;
+  /* top:295px; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 2px;
