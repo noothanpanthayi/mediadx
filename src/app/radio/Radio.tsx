@@ -474,7 +474,8 @@ function Radio({ stations }: { stations: Station[] }) {
         </div>
           </div>
           <div className={footer}>
-            @2024 Media DX
+            <div>@2025 Media DX</div>
+            {/* <div className={author}>Developed by Noothan Krishnan</div> */}
           </div>
          </div>
       </div>
@@ -517,6 +518,7 @@ const {
   footerSection,
   volumeSection,
   headerSection,
-  scrollable
+  scrollable,
+  author
 } = styles;
 export default Radio;
