@@ -366,7 +366,7 @@ function Radio({ stations }: { stations: Station[] }) {
             {state.selectedMenu !== "International" && (
               <div
                 onClick={() => updateSelectedMenu("International")}
-                className={menuItem}
+                className={`${menuItem} ${c1}`}
               >
                 International
               </div>
@@ -374,7 +374,7 @@ function Radio({ stations }: { stations: Station[] }) {
             {state.selectedMenu !== "Music" && (
               <div
                 onClick={() => updateSelectedMenu("Music")}
-                className={menuItem}
+                className={`${menuItem} ${c2}`}
               >
                 Music
               </div>
@@ -382,7 +382,7 @@ function Radio({ stations }: { stations: Station[] }) {
             {state.selectedMenu !== "Artists" && (
               <div
                 onClick={() => updateSelectedMenu("Artists")}
-                className={menuItem}
+                className={`${menuItem} ${c3}`}
               >
                 Artists
               </div>
@@ -390,7 +390,7 @@ function Radio({ stations }: { stations: Station[] }) {
             {state.selectedMenu !== "Hindi" && (
               <div
                 onClick={() => updateSelectedMenu("Hindi")}
-                className={menuItem}
+                className={`${menuItem} ${c4}`}
               >
                 Hindi
               </div>
@@ -398,7 +398,7 @@ function Radio({ stations }: { stations: Station[] }) {
             {state.selectedMenu !== "Malayalam" && (
               <div
                 onClick={() => updateSelectedMenu("Malayalam")}
-                className={menuItem}
+                className={`${menuItem} ${c5}`}
               >
                 Malayalam
               </div>
@@ -406,7 +406,7 @@ function Radio({ stations }: { stations: Station[] }) {
             {state.selectedMenu !== "Tamil" && (
               <div
                 onClick={() => updateSelectedMenu("Tamil")}
-                className={menuItem}
+                className={`${menuItem} ${c6}`}
               >
                 Tamil
               </div>
@@ -414,7 +414,7 @@ function Radio({ stations }: { stations: Station[] }) {
             {state.selectedMenu !== "Devotional" && (
               <div
                 onClick={() => updateSelectedMenu("Devotional")}
-                className={menuItem}
+                className={`${menuItem} ${c7}`}
               >
                 Devotional
               </div>
@@ -428,7 +428,7 @@ function Radio({ stations }: { stations: Station[] }) {
         )}
          </div>
         <div className={scrollable}>
-        <div className={grid}>
+        {!state.showMenu && <div className={grid}>
           {stations
             ?.filter((station) => {
               return station.category === state.selectedMenu.toLowerCase();
@@ -449,7 +449,7 @@ function Radio({ stations }: { stations: Station[] }) {
                 </React.Fragment>
               );
             })}
-        </div>
+        </div>}
         </div>
          <div className={footerSection}>
           <div className={volumeSection}>
@@ -519,6 +519,7 @@ const {
   volumeSection,
   headerSection,
   scrollable,
-  author
+  author,
+  c1,c2,c3,c4,c5,c6,c7
 } = styles;
 export default Radio;

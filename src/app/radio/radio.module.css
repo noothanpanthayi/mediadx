@@ -253,7 +253,7 @@
 }
 
 
-.selectedMenuItem {
+/* .selectedMenuItem {
     color: #fff;
     cursor: pointer;
     background:linear-gradient(#483d8b, #6a5acd);
@@ -266,8 +266,25 @@
     font-size: 16px;
     font-weight: bold;
     display: flex;
-    padding:0 10px;
+    padding:0 10px; 
+} */
+
+.selectedMenuItem {
     
+    color: #fff;
+    cursor: pointer;
+  background: linear-gradient(to bottom,#000000, #007bff, #000);
+
+    justify-content:space-between;
+    margin: 0px 20px;
+    min-height:55px;
+    align-items: center;;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    padding:0 10px; 
+
 }
 
 .menu {
@@ -275,11 +292,12 @@
   z-index:1000;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 2px;
-  margin: 2px 20px 9px 19px;
+  gap: 3px;
+  margin: 3px 20px 9px 19px;
+
 }
 
-.menuItem {
+/* .menuItem {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,11 +309,30 @@
   transition: transform 0.2s ease;
   user-select: none;
   font-size: 15px;
+  white-space: nowrap; */
+  /* border: 1px solid gold; */
+  /* text-decoration:underline */
+/* } */
+
+.menuItem {
+  border:solid 5px #b5a264;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px; 
+  background: linear-gradient(to bottom, darkslateblue, slateblue);
+  color: white;
+  font-family: 'arial';
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
   white-space: nowrap;
   /* border: 1px solid gold; */
   /* text-decoration:underline */
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 }
-
 .menuItem:hover {
   background-color: rebeccapurple;
 }
@@ -440,12 +477,20 @@
 }
 
 .volumeSection {
-           margin: 3px 0px;
+           /* margin: 3px 0px;
             display: flex;
             flex-direction: column;
             border-top:3px groove darkgray;
             margin-top:10px;
-            padding-top:10px;
+            padding-top:10px; */
+
+                border: 3px groove #a9a9a9;
+    flex-direction: column;
+    margin: 10px 15px 15px 15px;
+    padding-top: 4px;
+    display: flex
+;
+    border-radius: 8px;
 }
 
 .volume {
@@ -453,3 +498,128 @@
           display:flex;
           flex-direction:column;
 }
+
+
+
+.mainButtons{
+  display: -ms-grid;
+  display: flex;
+  justify-content: center;
+  color: white;
+  background: #333;
+ padding:12px 0;
+  border-bottom:solid 1px #fff;
+  & div  {
+    font-family: 'arial';
+    font-size: 0.9rem;
+    text-align: center;
+    color: #666;
+    cursor: pointer;
+    white-space: nowrap;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
+
+.sleepBtn {
+  font-size:1.1rem;
+  border: solid 3px #666;
+width: 45px;
+height:45px;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  margin:0 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.tuning {
+  align-self:center;
+  color:lawngreen
+}
+
+.musicgraph{
+  height:50px
+}
+
+.show {
+  display:flex
+}
+
+.hide {
+  display: none
+}
+
+.showIcon {
+  display:flex;
+  flex-direction: row;
+  position:relative;
+  top:-3px;
+  margin-left:5px
+}
+
+.playstatus {
+  margin-right:10px
+}
+
+.sleep {
+  font-size: 1.1rem;
+  margin-right:10px;
+  color:#fff
+}
+
+.indicator{
+  color:red!important
+}
+
+.MuiSwitch-track {
+  background-color:'#fff!important'
+}
+
+
+
+.minMax {
+cursor: pointer;
+}
+
+.c1 {
+   background:linear-gradient(#ff4800, #ff8500);
+}
+
+.c2 {
+     background:linear-gradient(#6a00f4, #8900f2);
+}
+
+.c3 {
+   background: linear-gradient(green, #00e676);
+
+}
+
+.c4 {
+   background:linear-gradient(#db0707, #dc2b08);
+}
+
+.c5 {
+   background:linear-gradient(#004cff,#00afff);
+
+}
+
+.c6 {
+   background:linear-gradient(#004D40, #4CAF50);
+}
+
+.c7 {
+   background:linear-gradient(darkred, maroon);
+}
+
