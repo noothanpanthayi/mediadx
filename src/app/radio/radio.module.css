@@ -1,20 +1,19 @@
-
 .headerSection {
   position: fixed;
   top: 0;
   width: 100%;
   max-width: 1024px;
   z-index: 100;
-  background:lightslategray;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  background: lightslategray;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .radio {
-  display:flex;
+  display: flex;
   flex-direction: column;
   padding: 0;
-  padding:5px 0 80px;
-  height:100vh;
+  padding: 5px 0 80px;
+  height: 100vh;
   justify-content: flex-start;
   background-color: lightslategray;
 }
@@ -22,7 +21,7 @@
 .lcd {
   font-family: "Roboto";
   border: inset 2px #666;
-  background: linear-gradient(to bottom,#000000, #007bff, #000);
+  background: linear-gradient(to bottom, #000000, #007bff, #000);
   color: yellow;
   margin: 5px 20px 5px 20px;
 }
@@ -32,35 +31,32 @@
     display: none;
   }
   .titlePanel {
-    display: none!important
+    display: none !important;
   }
   .selectedMenuItem {
-    margin-top: 10px!important
+    margin-top: 10px !important;
   }
   .grid {
-
-  margin-top:68px!important
+    margin-top: 68px !important;
+  }
 }
-}
-
 
 .freqPanel {
-  font-family:arial;
+  font-family: arial;
   font-weight: bold;
   line-height: 50px;
 }
 
 .frequency {
-   margin-right: 2px;
+  margin-right: 2px;
   font-size: 35px;
   display: flex;
   align-items: center;
-
 }
 
-.flexRow{
+.flexRow {
   display: flex;
-  flex-direction:row
+  flex-direction: row;
 }
 
 .radio ul li {
@@ -78,34 +74,33 @@
 }
 
 .band {
-   margin: 0 2px;
+  margin: 0 2px;
   align-items: center;
   color: white;
   font-size: 16px;
 }
 
 .loading {
-   display: flex;
+  display: flex;
   color: white;
-
 }
 
 .circle {
   font-family: digital;
-  font-size:30px;
-  display:flex;
+  font-size: 30px;
+  display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   width: 25px;
-  height:25px;
-  border-radius:60%
+  height: 25px;
+  border-radius: 60%;
 }
 
-.countDownColor{
-  font-size:12px;
-  color:red;
-  margin-left:35px;
-  display:flex;
+.countDownColor {
+  font-size: 12px;
+  color: red;
+  margin-left: 35px;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -113,18 +108,18 @@
 .slider {
   -webkit-appearance: none;
   width: -webkit-fill-available;
-   margin:8px 20px 20px 20px;
-  background:linear-gradient(to right,#000, #007bff, red);
-  border-bottom:solid 1px silver;
-  border-right:solid 1px silver;
-   border-top:solid 1px #000;
-  border-left:solid 1px #000;
+  margin: 8px 20px 20px 20px;
+  background: linear-gradient(to right, #000, #007bff, red);
+  border-bottom: solid 1px silver;
+  border-right: solid 1px silver;
+  border-top: solid 1px #000;
+  border-left: solid 1px #000;
   outline: none;
   opacity: 1;
   border-radius: 6px;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
-  height:20px;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  height: 20px;
 }
 
 .slider::-webkit-slider-thumb {
@@ -132,13 +127,13 @@
   appearance: none;
   width: 80px;
   height: 40px;
-  background:#b5a264;
+  background: #b5a264;
   cursor: pointer;
-  border-left:solid 1px #fff;
-  border-top:solid 1px #fff;
-  border-radius:8px;
-  cursor:pointer;
-  box-shadow:2px 2px 2px #000
+  border-left: solid 1px #fff;
+  border-top: solid 1px #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #000;
 }
 
 .slider::-moz-range-thumb {
@@ -149,7 +144,7 @@
 }
 
 .flex {
-  display:flex;
+  display: flex;
   align-items: center;
 }
 
@@ -165,10 +160,9 @@
   font-weight: bold;
 }
 .scrollable {
-  flex:1 1 auto;
+  flex: 1 1 auto;
   overflow-y: auto;
   padding-bottom: 95px;
-  
 }
 
 .grid {
@@ -178,35 +172,44 @@
   grid-template-columns: repeat(auto-fill, minmax(108, 1fr));
   grid-gap: 5px;
   margin: 5px 18px;
-  margin-top:295px;
+  margin-top: 300px;
 }
 
 .streaming {
-  color:yellow;
-  font-size:20px
+  color: yellow;
+  font-size: 20px;
 }
 
 .radioTile {
   display: flex;
   justify-content: center;
-  height:60px;
+  height: 60px;
   align-items: center;
   background: linear-gradient(to bottom, #0078d4, #005fa3); /* subtle depth */
+  /* background: linear-gradient(to bottom, darkgreen,green); subtle depth */
+
   color: white;
-  font-family: "Segoe UI", sans-serif;
+  /* font-family: "Segoe UI", sans-serif; */
+  font-family: "Roboto";
+  font-weight: bold;
   border: 1px solid #004e8c;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
-  font-size: 15px;
+  font-size: 16px;
   white-space: nowrap;
+  /* border-radius:6px; */
+  border: solid 3px #b5a264;
+  /* border-radius: 6px; */
+  height: 100px;
+  box-shadow: 2px 2px 6px 3px rgba(0, 0, 0, 0.3);
 }
 
-.musicGraph{
+.musicGraph {
   width: 22px;
   height: 24px;
-  margin-left: 10
+  margin-left: 10;
 }
 
 .titlePanel {
@@ -216,26 +219,29 @@
   display: flex;
   justify-content: space-between;
   height: 30px;
-
 }
 
-.selectedRadioTile{
-   background: linear-gradient(to bottom, green, #56b000);
+.selectedRadioTile {
+  background: linear-gradient(to bottom, green, #56b000);
   transform: translateY(1px); /* slight press effect */
   display: flex;
   justify-content: center;
-  height:60px;
+  height: 60px;
   color: white;
   align-items: center;
-  font-family: "Segoe UI", sans-serif;
+  /* font-family: "Segoe UI", sans-serif; */
+  font-weight: bold;
   border: 1px solid green;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
-   outset 0 1px 0 rgba(255, 255, 255, 0.3); 
+    outset 0 1px 0 rgba(255, 255, 255, 0.3);
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
   font-size: 15px;
   white-space: nowrap;
+
+  border: solid 3px #b5a264;
+  height: 100px;
 }
 
 .mode {
@@ -251,7 +257,6 @@
   font-family: "roboto";
   cursor: pointer;
 }
-
 
 /* .selectedMenuItem {
     color: #fff;
@@ -270,31 +275,30 @@
 } */
 
 .selectedMenuItem {
-    
-    color: #fff;
-    cursor: pointer;
-  background: linear-gradient(to bottom,#000000, #007bff, #000);
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #000000, #007bff, #000);
 
-    justify-content:space-between;
-    margin: 0px 20px;
-    min-height:55px;
-    align-items: center;;
-    font-family: Roboto;
-    font-size: 16px;
-    font-weight: bold;
-    display: flex;
-    padding:0 10px; 
-
+  justify-content: space-between;
+  margin: 0px 20px;
+  min-height: 60px;
+  align-items: center;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  padding: 0 10px;
+  border-radius: 6px;
+  
 }
 
 .menu {
-  position:relative;
-  z-index:1000;
+  position: relative;
+  z-index: 1000;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 3px;
   margin: 3px 20px 9px 19px;
-
 }
 
 /* .menuItem {
@@ -310,34 +314,32 @@
   user-select: none;
   font-size: 15px;
   white-space: nowrap; */
-  /* border: 1px solid gold; */
-  /* text-decoration:underline */
+/* border: 1px solid gold; */
+/* text-decoration:underline */
 /* } */
 
 .menuItem {
-  border:solid 5px #b5a264;
+  border: solid 5px #b5a264;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px; 
+  height: 100px;
   background: linear-gradient(to bottom, darkslateblue, slateblue);
   color: white;
-  font-family: 'arial';
+  font-family: "roboto";
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   transition: transform 0.2s ease;
   white-space: nowrap;
   /* border: 1px solid gold; */
   /* text-decoration:underline */
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2);
 }
 .menuItem:hover {
   background-color: rebeccapurple;
 }
-
-
 
 @keyframes ldsHourglass {
   0% {
@@ -355,40 +357,41 @@
 
 .ldsHourglass {
   display: inline-block;
-  width:5px;
-      &:after {
-        content: " ";
-      display: block;
-      border-radius: 50%;
-      width: 0;
-      height: 0;
-      margin:0 6px;
-      box-sizing: border-box;
-      border: 10px solid #fff;
-      border-color: #fff transparent #fff transparent;
-      animation: ldsHourglass 1.2s infinite;
-      }
+  width: 5px;
+  &:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 0 6px;
+    box-sizing: border-box;
+    border: 10px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: ldsHourglass 1.2s infinite;
+  }
 }
 
 .courtesy {
-  width:100%;
-  display:flex;
-  margin:0 7px;
-  font-size:13px;
-  color:#b5a264;
-  justify-content: space-between!important;
+  width: 100%;
+  display: flex;
+  margin: 0 7px;
+  font-size: 13px;
+  color: #b5a264;
+  justify-content: space-between !important;
 }
 
-.courtesy a:link, .courtesy a:visited{
-  margin-left:2px;
+.courtesy a:link,
+.courtesy a:visited {
+  margin-left: 2px;
   font-size: 13px;
-  color:#b5a264;
+  color: #b5a264;
 }
 
 .dateTime {
-  font-size:14px;
+  font-size: 14px;
   font-weight: bold;
-  color:#b5a264
+  color: #b5a264;
 }
 
 .station {
@@ -403,13 +406,23 @@
   font-family: arial;
   font-size: 25px;
   font-weight: bold;
-  background: linear-gradient(90deg, lawngreen,hotpink, lawngreen, yellow,green, yellow,#007bff,hotpink);
+  background: linear-gradient(
+    90deg,
+    lawngreen,
+    hotpink,
+    lawngreen,
+    yellow,
+    green,
+    yellow,
+    #007bff,
+    hotpink
+  );
   background-size: 50% 10%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 10s linear infinite alternate  both;
+  animation: shimmer 10s linear infinite alternate both;
 }
 
 @keyframes shimmer {
@@ -422,9 +435,8 @@
 }
 
 .arrow {
-  font-size:20px;
+  font-size: 20px;
 }
-
 
 .color-cycle {
   font-size: 2.5rem;
@@ -433,22 +445,28 @@
 }
 
 @keyframes colorShift {
-  0%   { color: green; }
-  33%  { color: blue; }
-  66%  { color: yellow; }
-  100% { color: green; }
+  0% {
+    color: green;
+  }
+  33% {
+    color: blue;
+  }
+  66% {
+    color: yellow;
+  }
+  100% {
+    color: green;
+  }
 }
 
-
-.radioLabel{
- color:#b5a264;
- color:#ddd;
- margin:1px 0 2px 0;
-  font-size:14px;
-  display:flex;
-  justify-content:center;
+.radioLabel {
+  color: #b5a264;
+  color: #ddd;
+  margin: 1px 0 2px 0;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
   text-shadow: 1px 1px 0 #000, -1px -1px 0 #555;
-
 }
 
 .footerSection {
@@ -459,58 +477,55 @@
   width: 100%;
   max-width: 1024px;
   z-index: 100;
-  background:lightslategray;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  background: lightslategray;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.author{
-  color:navy;
+.author {
+  color: navy;
 }
 
 .footer {
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  padding:10px 25px;
-  background: linear-gradient(to bottom,darkblue, #007bff, #000);
-  font-size:12px;
-  color:white;
+  padding: 10px 25px;
+  background: linear-gradient(to bottom, darkblue, #007bff, #000);
+  font-size: 12px;
+  color: white;
 }
 
 .volumeSection {
-           /* margin: 3px 0px;
+  /* margin: 3px 0px;
             display: flex;
             flex-direction: column;
             border-top:3px groove darkgray;
             margin-top:10px;
             padding-top:10px; */
 
-                border: 3px groove #a9a9a9;
-    flex-direction: column;
-    margin: 10px 15px 15px 15px;
-    padding-top: 4px;
-    display: flex
-;
-    border-radius: 8px;
+  border: 3px groove #a9a9a9;
+  flex-direction: column;
+  margin: 10px 15px 15px 15px;
+  padding-top: 4px;
+  display: flex;
+  border-radius: 8px;
 }
 
 .volume {
-          margin: 3px 0px;
-          display:flex;
-          flex-direction:column;
+  margin: 3px 0px;
+  display: flex;
+  flex-direction: column;
 }
 
-
-
-.mainButtons{
+.mainButtons {
   display: -ms-grid;
   display: flex;
   justify-content: center;
   color: white;
   background: #333;
- padding:12px 0;
-  border-bottom:solid 1px #fff;
-  & div  {
-    font-family: 'arial';
+  padding: 12px 0;
+  border-bottom: solid 1px #fff;
+  & div {
+    font-family: "arial";
     font-size: 0.9rem;
     text-align: center;
     color: #666;
@@ -528,98 +543,91 @@
   }
 }
 
-
 .sleepBtn {
-  font-size:1.1rem;
+  font-size: 1.1rem;
   border: solid 3px #666;
-width: 45px;
-height:45px;
+  width: 45px;
+  height: 45px;
   cursor: pointer;
   color: #fff;
   border-radius: 5px;
-  margin:0 3px;
+  margin: 0 3px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
 .tuning {
-  align-self:center;
-  color:lawngreen
+  align-self: center;
+  color: lawngreen;
 }
 
-.musicgraph{
-  height:50px
+.musicgraph {
+  height: 50px;
 }
 
 .show {
-  display:flex
+  display: flex;
 }
 
 .hide {
-  display: none
+  display: none;
 }
 
 .showIcon {
-  display:flex;
+  display: flex;
   flex-direction: row;
-  position:relative;
-  top:-3px;
-  margin-left:5px
+  position: relative;
+  top: -3px;
+  margin-left: 5px;
 }
 
 .playstatus {
-  margin-right:10px
+  margin-right: 10px;
 }
 
 .sleep {
   font-size: 1.1rem;
-  margin-right:10px;
-  color:#fff
+  margin-right: 10px;
+  color: #fff;
 }
 
-.indicator{
-  color:red!important
+.indicator {
+  color: red !important;
 }
 
 .MuiSwitch-track {
-  background-color:'#fff!important'
+  background-color: "#fff!important";
 }
 
-
-
 .minMax {
-cursor: pointer;
+  cursor: pointer;
 }
 
 .c1 {
-   background:linear-gradient(#ff4800, #ff8500);
+  background: linear-gradient(#ff4800, #ff8500);
 }
 
 .c2 {
-     background:linear-gradient(#6a00f4, #8900f2);
+  background: linear-gradient(#6a00f4, #8900f2);
 }
 
 .c3 {
-   background: linear-gradient(green, #00e676);
-
+  background: linear-gradient(green, #00e676);
 }
 
 .c4 {
-   background:linear-gradient(#db0707, #dc2b08);
+  background: linear-gradient(#db0707, #dc2b08);
 }
 
 .c5 {
-   background:linear-gradient(#004cff,#00afff);
-
+  background: linear-gradient(#004cff, #00afff);
 }
 
 .c6 {
-   background:linear-gradient(#004D40, #4CAF50);
+  background: linear-gradient(#004d40, #4caf50);
 }
 
 .c7 {
-   background:linear-gradient(darkred, maroon);
+  background: linear-gradient(darkred, maroon);
 }
-

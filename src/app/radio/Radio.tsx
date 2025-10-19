@@ -34,6 +34,7 @@ interface Station {
 interface RadioState {
   showMenu: boolean;
   audioLoading: boolean;
+  showVinyl: boolean;
   selectedMenu: string;
   playerOn: boolean;
   selectedStation: Station;
@@ -47,6 +48,7 @@ function Radio({ stations }: { stations: Station[] }) {
     audioLoading: false,
     selectedMenu: "International",
     playerOn: false,
+    showVinyl: false,
     selectedStation: {
       id: 0,
       category: "",
@@ -129,6 +131,11 @@ function Radio({ stations }: { stations: Station[] }) {
           updateState({
             audioLoading: false,
             playerOn: true,
+            showVinyl: station.type.toLowerCase().includes("music") 
+            || station.category.toLowerCase().includes("music")
+          || station.type.toLowerCase().includes("artists")
+          || station.category.toLowerCase().includes("devotional"),
+
           });
         };
         audio.play().catch((err) => {
@@ -215,8 +222,10 @@ function Radio({ stations }: { stations: Station[] }) {
           <div></div>
           <div>HD Radio</div>
         </div>
+         
         <ul onClick={muteRadio} className={lcd}> 
           {/* <li className={station}> */}
+        
           <li
             className={
               state.playerOn && !state.audioLoading ? animatedTitle : station
@@ -251,7 +260,7 @@ function Radio({ stations }: { stations: Station[] }) {
                 )}
                 {/* <div>{loadingPlaying()}</div> */}
                 {!state.audioLoading && state.playerOn ? (
-                  <div>
+                  <div style={{position:"relative"}}>
                     <Image
                       src={"/musicgraph.gif"}
                       alt={"image"}
@@ -260,6 +269,15 @@ function Radio({ stations }: { stations: Station[] }) {
                       className={musicGraph}
                       priority={true}
                     />
+                     {state.showVinyl && <Image style={{position:"absolute", top:"5px", left:"15px"}}
+                      src={"/lprecord.gif"}
+                      alt={"image"}
+                      width={100}
+                      height={100}
+                      // className={musicGraph}
+                      priority={true}
+                    />}
+
                   </div>
                 ) : (
                   !state.audioLoading && (
@@ -438,6 +456,7 @@ function Radio({ stations }: { stations: Station[] }) {
                 <React.Fragment key={station.id}>
                   <div
                     onClick={() => doPlay(station)}
+                    
                     className={
                       station.id === state.selectedStation?.id
                         ? selectedRadioTile
