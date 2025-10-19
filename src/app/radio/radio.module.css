@@ -289,7 +289,11 @@
   display: flex;
   padding: 0 10px;
   border-radius: 6px;
-  
+
+      font-size: 22px;
+    font-weight: bold;
+    font-family: 'arial';
+     color: lime;
 }
 
 .menu {
