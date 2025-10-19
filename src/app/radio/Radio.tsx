@@ -212,6 +212,16 @@ function Radio({ stations }: { stations: Station[] }) {
     return raw.replace(/,/g, "").replace("AM", "am").replace("PM", "pm");
   }
 
+ const imageMap: Record<string, string> = {
+  Krishna: "/krishna.gif",
+  "Radio Ayyappa": "/ayyappa.png",
+  Ganesha: "/ganesha.png",
+  Sai: "/sainew1.png",
+  Hanuman: "/hanuman.png",
+};
+
+
+
   return (
     <>
       <audio ref={audioRef} />
@@ -239,6 +249,23 @@ function Radio({ stations }: { stations: Station[] }) {
             {
               // state.selectedStation.frequency ? (
               <div className={flex}>
+                <div>
+
+                     {!state.audioLoading && state.playerOn 
+                 &&  imageMap[state.selectedStation.medianame] && <div style={{position:"relative"}}>
+                    <Image
+                    style={{background:'none',position:"absolute", top:"-10px", left:"-90px"}}
+                      src={imageMap[state.selectedStation.medianame]}
+                      alt={"image"}
+                      width={100}
+                      height={100}
+                      // className={musicGraph}
+                      priority={true}
+                    />
+                    </div>}
+
+
+                </div>
                 {state.selectedStation.frequency ? (
                   <>
                     <div className={frequency}>
