@@ -120,6 +120,7 @@ function Radio({ stations }: { stations: Station[] }) {
 
   function doPlay(station: Station) {
     const audio = audioRef.current;
+    document.title = `${station.medianame}-${station.location || ""}`;
     if (audio?.paused || (audio?.src && audio?.src !== station.stream)) {
       updateState({
         audioLoading: true,

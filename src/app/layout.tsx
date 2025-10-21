@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Media DX-World Band Radio",
   description: "Internet Radio",
+   icons: {
+    icon: '/radio.ico',
+  },
+
 };
 
 export default function RootLayout({
