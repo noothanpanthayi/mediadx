@@ -583,6 +583,7 @@
   padding-top: 4px;
   display: flex;
   border-radius: 8px;
+  width:-webkit-fill-available;
 }
 
 .sleepSection {
