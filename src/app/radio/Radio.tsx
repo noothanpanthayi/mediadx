@@ -616,7 +616,7 @@ function Radio({ stations }: { stations: Station[] }) {
         </div>}
         </div>
          <div className={footerSection}>
-          <div className={console} >
+          <div className={radioconsole} >
           <div className={volumeSection}>
              <div
           id="volumePanel"
@@ -722,7 +722,7 @@ const {
   scrollable,
   author,
   c1,c2,c3,c4,c5,c6,c7,
-  console,
+  radioconsole,
   sleepHour,
   sleepMinute,
   sleepSecond,

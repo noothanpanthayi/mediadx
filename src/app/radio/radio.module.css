@@ -562,7 +562,7 @@
   color: white;
 }
 
-.console {
+.radioconsole {
   display: flex; 
   flex-direction: row;
   gap: 1px;
