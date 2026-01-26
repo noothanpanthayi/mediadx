@@ -438,6 +438,69 @@
   }
 }
 
+@keyframes blink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+.blinker {
+  animation: blink 1s infinite;
+}
+
+.sleepHour {
+  color: #fff;
+  padding: 2px 2px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sleepMinute {
+  color: #fff;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  text-align: center;
+  background: #000;
+  border: 3px solid #b5a264;
+  border-radius: 8px;
+  /* min-width: 80px; */
+  padding: 0px 5px;
+  font-size: 21px;
+  /* font-weight: bold; */
+  transition: all .2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+}
+
+/* .sleepMinute:hover:not(:disabled) {
+  background: linear-gradient(to bottom, #0087e8, #006bb3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+} */
+
+.sleepMinute:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.sleepSecond {
+  color: #fff;
+  padding: 2px 2px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sleepColon {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ddd;
+}
+
 .arrow {
   font-size: 20px;
 }
@@ -464,10 +527,9 @@
 }
 
 .radioLabel {
-  color: #b5a264;
-  color: #ddd;
+  color: #fff;
   margin: 1px 0 2px 0;
-  font-size: 14px;
+  font-size: 12px;
   display: flex;
   justify-content: center;
   text-shadow: 1px 1px 0 #000, -1px -1px 0 #555;
@@ -483,6 +545,8 @@
   z-index: 100;
   background: lightslategray;
   box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
 }
 
 .author {
@@ -498,20 +562,60 @@
   color: white;
 }
 
-.volumeSection {
-  /* margin: 3px 0px;
-            display: flex;
-            flex-direction: column;
-            border-top:3px groove darkgray;
-            margin-top:10px;
-            padding-top:10px; */
+.console {
+  display: flex; 
+  flex-direction: row;
+  gap: 1px;
+}
 
+.console > .volumeSection:first-child {
+  flex: 12; /* 80% */
+}
+
+.console > .sleepSection {
+  flex: 1; /* 20% */
+}
+
+.volumeSection {
   border: 3px groove #a9a9a9;
   flex-direction: column;
   margin: 10px 15px 15px 15px;
   padding-top: 4px;
   display: flex;
   border-radius: 8px;
+}
+
+.sleepSection {
+  border: 3px groove #a9a9a9;
+  flex-direction: column;
+  margin: 10px 15px 15px 15px;
+  padding: 5px 5px;
+  display: flex;
+  border-radius: 8px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.sleepNo {
+  color: #b5a264;
+  margin: 1px 0 2px 0;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #555;
+  color:#fff;
+  button {
+    width:60px;
+    border:#fff;
+    padding:10px;
+    border-radius: 6px;
+    background: blue;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+  }
 }
 
 .volume {
@@ -600,8 +704,63 @@
   color: red !important;
 }
 
-.MuiSwitch-track {
-  background-color: "#fff!important";
+/* CSS-Only Switch Component */
+.switchContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.switchLabel {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.switch {
+  position: relative;
+  width: 45px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.switchInput {
+  display: none;
+}
+
+.switchSlider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 28px;
+  transition: background-color 0.3s ease;
+  border: 2px solid #999;
+}
+
+.switchSlider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 1px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.switchInput:checked + .switchSlider {
+  background-color: #dc143c;
+  border-color: #a00a2f;
+}
+
+.switchInput:checked + .switchSlider::before {
+  transform: translateY(-50%) translateX(22px);
 }
 
 .minMax {

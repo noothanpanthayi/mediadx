@@ -140,7 +140,7 @@ function Radio({ stations }: { stations: Station[] }) {
           });
         };
         audio.play().catch((err) => {
-          console.warn("Autoplay blocked", err);
+         console.log("Error ", err)
         });
       }
     } else {
@@ -212,6 +212,122 @@ function Radio({ stations }: { stations: Station[] }) {
 
     return raw.replace(/,/g, "").replace("AM", "am").replace("PM", "pm");
   }
+
+  // Sleep countdown state (in seconds)
+  const [sleepCountdown, setSleepCountdown] = useState<number>(0); // in seconds
+  const [timerSet, setTimerSet] = useState<boolean>(false); // Track if timer has been set
+  const [isCountingDown, setIsCountingDown] = useState<boolean>(false); // Track if countdown is active
+  const [toggleOnTime, setToggleOnTime] = useState<number | null>(null); // Track when toggle was turned on
+
+  function formatSleepTime(seconds: number): string {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hours}:${minutes.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  }
+
+  function handleMinuteClick() {
+    // Only allow if radio is on
+    // if (!state.playerOn) return;
+    // Increment by 1 minute (60 seconds) - for testing
+    // When it reaches or exceeds 120 minutes (7200 seconds), reset to 0
+    setSleepCountdown((prev) => {
+      const newValue = prev + 60;
+      return newValue >= 7200 ? 0 : newValue;
+    });
+    setTimerSet(true); // Mark that timer has been set
+  }
+
+  function handleSleepToggle(e: React.ChangeEvent<HTMLInputElement>) {
+    const checked = e.target.checked;
+    if (checked && sleepCountdown > 0) {
+      // Toggle ON: Set the time when toggle was turned on (wait 1 minute before starting)
+      setIsCountingDown(true);
+      setToggleOnTime(Date.now());
+    } else {
+      // Toggle OFF: Reset everything
+      setIsCountingDown(false);
+      setToggleOnTime(null);
+    }
+  }
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {};
+  }, []);
+
+  // Monitor sleep countdown and mute when it reaches 0
+  useEffect(() => {
+    if (sleepCountdown > 0 && isCountingDown && toggleOnTime !== null) {
+      // Use interval that checks every second
+      const timer = setInterval(() => {
+        const elapsedSeconds = Math.floor((Date.now() - toggleOnTime!) / 1000);
+        
+        // Wait 1 minute (60 seconds) before starting to decrement
+        if (elapsedSeconds >= 60) {
+          // 1-minute delay has passed, now start decrementing
+          setSleepCountdown((prev) => {
+            if (prev <= 0) return 0; // Prevent going below 0
+            
+            const newVal = prev - 1;
+            // If countdown reaches 0, pause audio immediately
+            if (newVal === 0) {
+              // Pause audio synchronously before state updates
+              const audio = audioRef.current;
+              if (audio) {
+                audio.pause();
+                // Update state immediately
+                setState((prevState) => ({
+                  ...prevState,
+                  playerOn: false,
+                  audioLoading: false,
+                }));
+              }
+              // Stop countdown and reset
+              setIsCountingDown(false);
+              setToggleOnTime(null);
+            }
+            return newVal;
+          });
+        }
+        // If elapsedSeconds < 60, do nothing - just keep checking every second
+      }, 1000); // Check every 1 second
+
+      return () => clearInterval(timer);
+    }
+  }, [sleepCountdown, isCountingDown, toggleOnTime]);
+
+  // Separate effect to pause audio when countdown reaches 0 (safety net)
+  // This triggers when countdown reaches 0, regardless of isCountingDown state
+  useEffect(() => {
+    if (sleepCountdown === 0) {
+      // Check if we were counting down (even if it was just set to false)
+      const wasCountingDown = isCountingDown || toggleOnTime !== null;
+      
+      if (wasCountingDown) {
+        // Pause the radio when countdown reaches 0
+        const audio = audioRef.current;
+        if (audio) {
+          // Force pause the audio - pause() is synchronous and returns void
+          // Try pausing regardless of current paused state
+          try {
+            audio.pause();
+            // Update state to reflect paused state
+            setState((prevState) => ({
+              ...prevState,
+              playerOn: false,
+              audioLoading: false,
+            }));
+          } catch (error) {
+            // Handle any pause errors silently
+          }
+        }
+        // Stop countdown and reset toggle
+        setIsCountingDown(false);
+        setToggleOnTime(null);
+      }
+    }
+  }, [sleepCountdown, isCountingDown, toggleOnTime]);
 
  const imageMap: Record<string, string> = {
   Krishna: "/krishna.gif",
@@ -334,7 +450,8 @@ function Radio({ stations }: { stations: Station[] }) {
           </li>
           <li>
             <div className={courtesy}>
-              <div>
+              <div></div>
+              {/* <div>
                 Courtesy:
                 <a
                   onClick={(e) => e?.stopPropagation()}
@@ -343,7 +460,7 @@ function Radio({ stations }: { stations: Station[] }) {
                 >
                   {state.selectedStation?.courtesy}
                 </a>
-              </div>
+              </div> */}
               <div className={dateTime}>{showDateTime()}</div>
             </div>
           </li>
@@ -499,6 +616,7 @@ function Radio({ stations }: { stations: Station[] }) {
         </div>}
         </div>
          <div className={footerSection}>
+          <div className={console} >
           <div className={volumeSection}>
              <div
           id="volumePanel"
@@ -520,8 +638,42 @@ function Radio({ stations }: { stations: Station[] }) {
           </div>
         </div>
           </div>
+           {/* <div className={sleepSection}> */}
+             {/* <div
+          id="volumePanel"
+        >
+          <div className={switchContainer} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
+            <div className={radioLabel}>Sleep</div>
+            <label className={styles.switch}>
+              <input
+                type="checkbox"
+                className={switchInput}
+                checked={isCountingDown}
+                onChange={handleSleepToggle}
+                disabled={sleepCountdown === 0}
+              />
+              <span className={switchSlider}></span>
+            </label>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px", marginTop: "8px" }}>
+           
+            <button
+              onClick={handleMinuteClick}
+              className={sleepMinute}
+              style={{ 
+                cursor: "pointer",
+                color: isCountingDown ? "red" : "#fff"
+              }}
+            >
+              {Math.floor(sleepCountdown / 60).toString().padStart(2, "0")}
+            </button>
+          </div>
+        </div> */}
+          {/* </div> */}
+          </div>
+
           <div className={footer}>
-            <div>@2025 Media DX</div>
+            <div>Copyright 2026 Media DX</div>
             {/* <div className={author}>Developed by Noothan Krishnan</div> */}
           </div>
          </div>
@@ -552,6 +704,7 @@ const {
   musicGraph,
   titlePanel,
   flex,
+  sleepNo,
   flexRow,
   freqMode,
   band,
@@ -564,9 +717,18 @@ const {
   footer,
   footerSection,
   volumeSection,
+  sleepSection,
   headerSection,
   scrollable,
   author,
-  c1,c2,c3,c4,c5,c6,c7
+  c1,c2,c3,c4,c5,c6,c7,
+  console,
+  sleepHour,
+  sleepMinute,
+  sleepSecond,
+  sleepColon,
+  switchContainer,
+  switchInput,
+  switchSlider
 } = styles;
 export default Radio;
