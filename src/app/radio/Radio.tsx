@@ -46,7 +46,7 @@ function Radio({ stations }: { stations: Station[] }) {
   const [state, setState] = useState<RadioState>({
     showMenu: false,
     audioLoading: false,
-    selectedMenu: "International",
+    selectedMenu: "Artists",
     playerOn: false,
     showVinyl: false,
     selectedStation: {
@@ -526,9 +526,9 @@ function Radio({ stations }: { stations: Station[] }) {
 
         {state.showMenu && (
           <div className={menu}>
-            {state.selectedMenu !== "International" && (
+            {state.selectedMenu !== "Artists" && (
               <div
-                onClick={() => updateSelectedMenu("International")}
+                onClick={() => updateSelectedMenu("Artists")}
                 className={`${menuItem} ${c1}`}
               >
                 International
@@ -542,12 +542,12 @@ function Radio({ stations }: { stations: Station[] }) {
                 Music
               </div>
             )}
-            {state.selectedMenu !== "Artists" && (
+            {state.selectedMenu !== "International" && (
               <div
-                onClick={() => updateSelectedMenu("Artists")}
+                onClick={() => updateSelectedMenu("International")}
                 className={`${menuItem} ${c3}`}
               >
-                Artists
+                International
               </div>
             )}
             {state.selectedMenu !== "Hindi" && (
