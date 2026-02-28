@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `radio` (
   `id` int(4) NOT NULL,
-  `category` varchar(50) NOT NULL,
+  `category` varchar(50rom) NOT NULL,
   `medianame` varchar(50) NOT NULL,
   `stream` varchar(500) NOT NULL,
   `website` varchar(500) NOT NULL,

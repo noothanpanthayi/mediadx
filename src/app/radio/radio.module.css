@@ -191,13 +191,13 @@
   color: white;
   /* font-family: "Segoe UI", sans-serif; */
   font-family: "Roboto";
-  font-weight: bold;
+  /* font-weight: bold; */
   border: 1px solid #004e8c;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
-  font-size: 15px;
+  font-size: 14px;
   white-space: nowrap;
   /* border-radius:6px; */
   border: solid 3px #b5a264;
@@ -230,16 +230,15 @@
   color: white;
   align-items: center;
   /* font-family: "Segoe UI", sans-serif; */
-  font-weight: bold;
+  /* font-weight: bold; */
   border: 1px solid green;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
     outset 0 1px 0 rgba(255, 255, 255, 0.3);
   cursor: pointer;
   transition: all 0.2s ease;
   user-select: none;
-  font-size: 15px;
+  font-size: 13px;
   white-space: nowrap;
-
   border: solid 3px #b5a264;
   height: 100px;
 }
@@ -579,7 +578,7 @@
 .volumeSection {
   border: 3px groove #a9a9a9;
   flex-direction: column;
-  margin: 10px 15px 15px 15px;
+  margin: 10px 0px 15px 15px;
   padding-top: 4px;
   display: flex;
   border-radius: 8px;
@@ -587,16 +586,14 @@
 }
 
 .sleepSection {
-  border: 3px groove #a9a9a9;
-  flex-direction: column;
-  margin: 10px 15px 15px 15px;
-  padding: 5px 5px;
-  display: flex;
-  border-radius: 8px;
+  
   user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+    border: 3px groove #a9a9a9;
+    border-radius: 8px;
+    flex-direction: column;
+    margin: 10px 15px 15px 6px;
+    padding: 5px;
+    display: flex;
 }
 
 .sleepNo {
