@@ -234,24 +234,27 @@ function Radio({ stations }: { stations: Station[] }) {
     return raw.replace(/,/g, "").replace("AM", "am").replace("PM", "pm");
   }
 
-  // Handle timer button click - increase by 1 minute
+  // Handle timer button click - increase by 15 minutes
   function handleTimerClick() {
-    setSleepMinutes((prev) => prev + 1);
+    setSleepMinutes((prev) => prev + 15);
   }
 
   // Handle sleep switch toggle
   function handleSwitchToggle(e: React.ChangeEvent<HTMLInputElement>) {
     const checked = e.target.checked;
-    setIsSleepActive(checked);
     if (checked) {
-      // Record when the switch was turned on
+      // Switch turned ON
       prevSleepMinutes.current = sleepMinutes;
       hasStartedCounting.current = false;
       setSwitchOnTime(Date.now());
+      setIsSleepActive(true);
     } else {
-      // Switch turned off
+      // Switch turned OFF - reset timer to 00
+      setSleepMinutes(0);
+      prevSleepMinutes.current = 0;
       hasStartedCounting.current = false;
       setSwitchOnTime(null);
+      setIsSleepActive(false);
     }
   }
 
