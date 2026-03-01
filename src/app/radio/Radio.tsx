@@ -612,8 +612,8 @@ function Radio({ stations }: { stations: Station[] }) {
           </div>
 
           <div className={footer}>
-            <div>Copyright 2026 Media DX</div>
-            {/* <div className={author}>Developed by Noothan Krishnan</div> */}
+            <div>Media DX</div>
+            <div className={author}>Developed by Noothan Krishnan</div>
           </div>
          </div>
       </div>
