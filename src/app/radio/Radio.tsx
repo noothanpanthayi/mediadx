@@ -20,17 +20,6 @@ interface Station {
   medianameshort: string;
 }
 
-// interface Station {
-//   id: number;
-//   medianame: string;
-//   location: string;
-//   type: string;
-//   frequency: string;
-//   courtesy: string;
-//   courtesylink: string;
-//   priority: number;
-// }
-
 interface RadioState {
   showMenu: boolean;
   audioLoading: boolean;
@@ -57,7 +46,7 @@ function Radio({ stations }: { stations: Station[] }) {
   const [state, setState] = useState<RadioState>({
     showMenu: false,
     audioLoading: false,
-    selectedMenu: "Artists",
+    selectedMenu: "International",
     playerOn: false,
     showVinyl: false,
     selectedStation: {
@@ -473,8 +462,6 @@ function Radio({ stations }: { stations: Station[] }) {
             </div>
           )}
         </div>
-
-       
 
         {state.showMenu && (
           <div className={menu}>
