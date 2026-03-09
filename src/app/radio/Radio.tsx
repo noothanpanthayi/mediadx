@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./radio.module.css";
 import Image from "next/image";
+import { Timestamp } from "next/dist/server/lib/cache-handlers/types";
 
 interface Station {
   id: number;

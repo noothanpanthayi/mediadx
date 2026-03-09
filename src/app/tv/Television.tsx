@@ -11,8 +11,8 @@ interface Channel {
   url: string;
   courtesy: string | null;
   priority: number | null;
-  created_at: string; // or Date if you convert in your API
-  updated_at: string; // or Date
+  // created_at: string; // or Date if you convert in your API
+  // updated_at: string; // or Date
 }
 
 // interface ChannelState {

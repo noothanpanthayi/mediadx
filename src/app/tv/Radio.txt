@@ -1,0 +1,350 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import styles from "./radio.module.css";
+import Image from "next/image";
+
+function Radio({ stations }: { stations: any }) {
+  const [state, setState] = useState({
+    showMenu: false,
+    audioLoading: false,
+    selectedMenu: "International",
+    playerOn: false,
+    selectedStation: {
+      id: 0,
+      medianame: "",
+      location: "",
+      type: "",
+      frequency: "",
+      courtesy: "",
+      courtesylink: "",
+      priority: 0,
+    },
+  });
+
+  function DisplayMenu() {
+    updateState({
+      showMenu: !state.showMenu,
+    });
+  }
+
+  function updateState(props: any) {
+    setState((prevState) => {
+      return {
+        ...prevState,
+        ...props,
+      };
+    });
+  }
+
+  useEffect(() => {
+    console.log("State ", state);
+  });
+
+  function loadingPlaying() {
+    let playingStatus;
+    const loading = <div className={ldsHourglass}></div>;
+    const playing = !state.audioLoading && state.playerOn && (
+      <Image
+        src={"/musicgraph.gif"}
+        alt={"image"}
+        width={0}
+        height={0}
+        className={musicGraph}
+        priority={true}
+      />
+    );
+    if (state.audioLoading) {
+      playingStatus = loading;
+    } else {
+      playingStatus = playing;
+    }
+
+    return playingStatus;
+  }
+
+  function updateSelectedMenu(category: string) {
+    setState((prevState) => {
+      return {
+        ...prevState,
+        showMenu: false,
+        selectedMenu: category,
+      };
+    });
+  }
+
+  // audio.oncanplaythrough = () => {
+  //   updateState({
+  //     audioLoading: false,
+  //     playerOn: true,
+  //   });
+  // };
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  function doPlay(station: any) {
+    const audio = audioRef.current;
+    console.log("sources ", audio?.src, station.stream);
+
+    if (audio?.paused || (audio?.src && audio?.src !== station.stream)) {
+      updateState({
+        audioLoading: true,
+        selectedStation: station,
+      });
+      if (audio) {
+        audio.src = station.stream;
+        audio.onplaying = () => {
+          updateState({
+            audioLoading: false,
+            playerOn: true,
+          });
+        };
+        audio.play().catch((err) => {
+          console.warn("Autoplay blocked", err);
+        });
+      }
+    } else {
+      audio?.pause();
+      setState((prevState) => {
+        return {
+          ...prevState,
+          playerOn: false,
+          audioLoading: false,
+        };
+      });
+    }
+  }
+
+  function CountDown({ speed }: { speed: number }) {
+    const [max, setMax] = useState(speed);
+
+    useEffect(() => {
+      const handler = setInterval(() => {
+        setMax((prev) => {
+          if (prev <= 0) {
+            clearInterval(handler);
+            setMax(0);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(handler); // cleanup on unmount
+    }, []);
+
+    return <div className={countDownColor}>{max}</div>;
+  }
+
+  function muteRadio() {
+    const audio: any = audioRef?.current;
+    if (audio.paused) {
+      audio.play();
+      setState((prevState) => {
+        return {
+          ...prevState,
+          playerOn: true,
+        };
+      });
+    } else {
+      audio.pause();
+      setState((prevState) => {
+        return {
+          ...prevState,
+          playerOn: false,
+        };
+      });
+    }
+  }
+  function showDateTime() {
+    const raw = new Date().toLocaleString("en-US", {
+      month: "short",
+      day: "2-digit",
+      weekday: "short",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    return raw.replace(/,/g, "").replace("AM", "am").replace("PM", "pm");
+  }
+
+  return (
+    <>
+      <audio ref={audioRef} />
+      <div className={radio}>
+        <div className={titlePanel}>
+          <div>Media DX</div>
+          <div></div>
+          <div>HD Radio</div>
+        </div>
+        <ul onClick={muteRadio} className={lcd}>
+          {/* <li className={station}> */}
+          <li
+            className={
+              state.playerOn && !state.audioLoading ? animatedTitle : station
+            }
+          >
+            {state.selectedStation.medianame || "Internet Radio"}
+          </li>
+
+          {/* {state.selectedStation.frequency ? ( */}
+          <li className={freqPanel}>
+            {
+              // state.selectedStation.frequency ? (
+              <div className={flex}>
+                {state.selectedStation.frequency ? (
+                  <>
+                    <div className={frequency}>
+                      {state.selectedStation.frequency.split(" ")[0]}
+                    </div>
+                    <div className={freqMode}>
+                      {state.selectedStation.frequency.split(" ")[1]}
+                    </div>
+
+                    <div className={band}>
+                      {state.selectedStation.frequency.split(" ")[2]}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div>Streaming Audio</div>
+                  </>
+                )}
+                <div>{loadingPlaying()}</div>
+                <div></div>
+              </div>
+            }
+          </li>
+
+          <li className={place}>
+            {state.selectedStation?.location || "Listen Live Radio"}&nbsp;
+          </li>
+          <li className={tagline}>
+            {state.selectedStation?.type || "From Anywhere, Any Time"}&nbsp;
+          </li>
+          <li>
+            <div className={courtesy}>
+              <div>
+                <strong>Courtesy:</strong>
+                <a
+                  onClick={(e) => e?.stopPropagation()}
+                  target="_blank"
+                  href={state.selectedStation?.courtesylink}
+                >
+                  {state.selectedStation?.courtesy}
+                </a>
+              </div>
+              <div className={dateTime}>{showDateTime()}</div>
+            </div>
+          </li>
+        </ul>
+
+        <div onClick={DisplayMenu} className={selectedMenuItem}>
+          {state.selectedMenu}
+        </div>
+
+        {state.showMenu && (
+          <div className={menu}>
+            {state.selectedMenu !== "International" && (
+              <div
+                onClick={() => updateSelectedMenu("International")}
+                className={menuItem}
+              >
+                International
+              </div>
+            )}
+            {state.selectedMenu !== "Music" && (
+              <div
+                onClick={() => updateSelectedMenu("Music")}
+                className={menuItem}
+              >
+                Music
+              </div>
+            )}
+            {state.selectedMenu !== "Hindi" && (
+              <div
+                onClick={() => updateSelectedMenu("Hindi")}
+                className={menuItem}
+              >
+                Hindi
+              </div>
+            )}
+            {state.selectedMenu !== "Malayalam" && (
+              <div
+                onClick={() => updateSelectedMenu("Malayalam")}
+                className={menuItem}
+              >
+                Malayalam
+              </div>
+            )}
+            {state.selectedMenu !== "Tamil" && (
+              <div
+                onClick={() => updateSelectedMenu("Tamil")}
+                className={menuItem}
+              >
+                Tamil
+              </div>
+            )}
+
+            {/* <div className={menuItem}>&nbsp;</div>
+            <div className={menuItem}>&nbsp;</div>
+            <div className={menuItem}>&nbsp;</div>
+            <div className={menuItem}>&nbsp;</div> */}
+          </div>
+        )}
+        <div className={grid}>
+          {stations
+            ?.filter((station: any) => {
+              return station.category === state.selectedMenu.toLowerCase();
+            })
+            ?.map?.((station: any) => {
+              return (
+                <React.Fragment key={station.id}>
+                  <div
+                    onClick={() => doPlay(station)}
+                    className={
+                      station.id === state.selectedStation?.id
+                        ? selectedRadioTile
+                        : radioTile
+                    }
+                  >
+                    {station.medianameshort}
+                  </div>
+                </React.Fragment>
+              );
+            })}
+        </div>
+      </div>
+    </>
+  );
+}
+
+const {
+  frequency,
+  lcd,
+  radio,
+  station,
+  freqPanel,
+  place,
+  tagline,
+  grid,
+  radioTile,
+  menuItem,
+  selectedMenuItem,
+  menu,
+  selectedRadioTile,
+  ldsHourglass,
+  courtesy,
+  dateTime,
+  animatedTitle,
+  musicGraph,
+  titlePanel,
+  flex,
+  flexRow,
+  freqMode,
+  band,
+  loading,
+  countDownColor,
+  circle,
+} = styles;
+export default Radio;
