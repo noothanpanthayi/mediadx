@@ -37,3 +37,22 @@ export async function query(text: string, params?: unknown[]): Promise<Station[]
   const result=await pool.query(text, params);
   return result.rows
 }
+
+
+interface Channel {
+  id: number;
+  category: string;
+  station: string;
+  title: string | null;
+  location: string | null;
+  url: string;
+  courtesy: string | null;
+  priority: number | null;
+  created_at: string; // or Date if you convert in your API
+  updated_at: string; // or Date
+}
+
+export async function querytv(text: string, params?: unknown[]): Promise<Channel[]> {
+  const result=await pool.query(text, params);
+  return result.rows
+}
