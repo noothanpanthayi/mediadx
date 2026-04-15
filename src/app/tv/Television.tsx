@@ -127,11 +127,12 @@ function Television({ channels }: { channels: Channel[] }) {
   }
 
   function doPlay(channel: Channel) {
-
+     console.log("IDS ####### ",channel.id, state.selectedChannel.id)
     setState((prevState:any)=>{
       return {
         ...prevState,
           selectedChannel:{
+          id:channel.id,
           url:channel.url
         }
       }
