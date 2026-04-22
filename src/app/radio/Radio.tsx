@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./radio.module.css";
 import Image from "next/image";
 import { Timestamp } from "next/dist/server/lib/cache-handlers/types";
+import Footer from "../components/footer/Footer";
 
 interface Station {
   id: number;
@@ -611,11 +612,12 @@ function Radio({ stations }: { stations: Station[] }) {
         </div>
           </div>
           </div>
+          <Footer/>
 
-          <div className={footer}>
+          {/* <div className={footer}>
             <div>Media DX</div>
             <div className={author}>Developed by Noothan Krishnan</div>
-          </div>
+          </div> */}
          </div>
       </div>
     </>

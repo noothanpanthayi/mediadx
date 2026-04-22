@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./radio.module.css";
+import Footer from "../components/footer/Footer";
 
 interface Channel {
   id: number;
@@ -62,7 +63,7 @@ function Television({ channels }: { channels: Channel[] }) {
   const [state, setState] = useState<ChannelState>({
     showMenu: false,
     audioLoading: false,
-    selectedMenu: "International",
+    selectedMenu: "English",
     playerOn: false,
     showVinyl: false,
     selectedChannel: {
@@ -319,12 +320,12 @@ function Television({ channels }: { channels: Channel[] }) {
 
           {state.showMenu && (
             <div className={menu}>
-              {state.selectedMenu !== "Artists" && (
+              {state.selectedMenu !== "Travel" && (
                 <div
-                  onClick={() => updateSelectedMenu("Artists")}
+                  onClick={() => updateSelectedMenu("Travel")}
                   className={`${menuItem} ${c1}`}
                 >
-                  Artists
+                  Travel
                 </div>
               )}
               {state.selectedMenu !== "Music" && (
@@ -335,12 +336,12 @@ function Television({ channels }: { channels: Channel[] }) {
                   Music
                 </div>
               )}
-              {state.selectedMenu !== "International" && (
+              {state.selectedMenu !== "English" && (
                 <div
-                  onClick={() => updateSelectedMenu("International")}
+                  onClick={() => updateSelectedMenu("English")}
                   className={`${menuItem} ${c3}`}
                 >
-                  International
+                  English
                 </div>
               )}
               {state.selectedMenu !== "Hindi" && (
@@ -410,10 +411,7 @@ function Television({ channels }: { channels: Channel[] }) {
           )}
         </div>
         <div className={footerSection}>
-          <div className={footer}>
-            <div>Media DX</div>
-            <div className={author}>Developed by Noothan Krishnan</div>
-          </div>
+          <Footer/>
         </div>
       </div>
     </>
