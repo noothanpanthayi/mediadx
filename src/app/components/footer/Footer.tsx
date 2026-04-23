@@ -22,7 +22,7 @@ const Footer = () => {
     <>
       {menuOpen && (
         <div className={bottomMenu}>
-          <div onClick={() => (window.location.href = "/radio")}>
+          <div onClick={() => (window.location.href = "/")}>
             Listen to Radio
           </div>
           <div onClick={() => (window.location.href = "/tv")}>Watch TV</div>
