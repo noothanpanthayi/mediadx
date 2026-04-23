@@ -347,7 +347,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  height: 80px;
   background: linear-gradient(to bottom, darkslateblue, slateblue);
   color: white;
   font-family: "roboto";
@@ -814,4 +814,9 @@
 
 .c7 {
   background: linear-gradient(darkred, maroon);
+}
+
+.closeMenu1 {
+  /* background: linear-gradient(black, black); */
+  background: transparent
 }

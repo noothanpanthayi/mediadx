@@ -91,6 +91,7 @@ function Radio({ stations }: { stations: Station[] }) {
     }
   }, []);
 
+
   function updateSelectedMenu(category: string) {
     setState((prevState) => {
       return {
@@ -534,6 +535,12 @@ function Radio({ stations }: { stations: Station[] }) {
                   Devotional
                 </div>
               )}
+              {/* <div
+                  onClick={() => displayMenu()}
+                  className={`${menuItem} ${closeMenu1}`}
+                >
+                  X
+                </div> */}
 
               {/* <div className={menuItem}>&nbsp;</div>
             <div className={menuItem}>&nbsp;</div>
@@ -697,5 +704,6 @@ const {
   switchContainer,
   switchInput,
   switchSlider,
+  closeMenu1,
 } = styles;
 export default Radio;
