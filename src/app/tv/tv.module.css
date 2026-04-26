@@ -237,7 +237,7 @@
   border: solid 3px #b5a264;
   /* border:solid 3px #000; */
   /* border-radius: 6px; */
-  height: 100px;
+  height: 65px;
   box-shadow: 2px 2px 6px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -275,7 +275,7 @@
   font-size: 14px;
   white-space: nowrap;
   border: solid 3px #b5a264;
-  height: 100px;
+  height: 65px;
 }
 
 .mode {

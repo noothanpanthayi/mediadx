@@ -45,3 +45,10 @@
   text-align: right;
   cursor: pointer;
 }
+
+
+@media (max-width: 499px) and (max-height:600px) {
+.footer {
+  display: none;  
+}
+}

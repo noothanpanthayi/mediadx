@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import styles from "./radio.module.css";
+import styles from "./tv.module.css";
 import Footer from "../components/footer/Footer";
 
 interface Channel {
