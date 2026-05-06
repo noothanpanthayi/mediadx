@@ -41,7 +41,7 @@
   }
 }
 
-@media (min-width: 1280px) and (pointer: coarse) {
+@media (min-width: 1600px) and (max-height: 900px) {
   .lcd {
     display: none;
   }
