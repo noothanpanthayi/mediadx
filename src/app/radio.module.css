@@ -41,7 +41,11 @@
   }
 }
 
-
+@media (orientation: landscape) and (min-aspect-ratio: 1.9/1) and (max-aspect-ratio: 2.1/1) {
+  .lcd {
+    display: none !important;
+  }
+}
 
 .freqPanel {
   font-family: arial;

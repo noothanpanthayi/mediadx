@@ -476,12 +476,7 @@ function Radio({ stations }: { stations: Station[] }) {
               </div>
             )}
           </div>
-         <div>
-
-          w:{window.innerWidth}, 
-          h:{window.innerHeight}, 
-          dpr:{window.devicePixelRatio}
-         </div>
+        
           {state.showMenu && (
             <div className={menu}>
               {state.selectedMenu !== "Artists" && (
