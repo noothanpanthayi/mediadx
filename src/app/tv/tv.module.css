@@ -36,7 +36,7 @@
   height: 200px;
   /* width: 100%;        */
   position: relative; /* important */
-  overflow: hidden;   /* optional but useful */
+  overflow: hidden; /* optional but useful */
 }
 
 .grid {
@@ -49,21 +49,15 @@
   margin-top: 300px;
 }
 
-@media (min-width: 915px)  {
-
+@media (min-width: 915px) {
   .lcd {
-
-  height: 400px;
-
-}
-
-  .grid {
-     margin-top: 500px;
+    height: 400px;
   }
 
-
+  .grid {
+    margin-top: 500px;
+  }
 }
-
 
 /* @media (max-width: 915px) and (orientation: landscape) {
   .titlePanel {
@@ -225,8 +219,6 @@
   padding-bottom: 95px;
 }
 
-
-
 .streaming {
   color: yellow;
   font-size: 20px;
@@ -237,10 +229,10 @@
   justify-content: center;
   height: 60px;
   align-items: center;
-  background: linear-gradient(to bottom, #0078d4, #005fa3); 
+  background: linear-gradient(to bottom, #0078d4, #005fa3);
   /* background: linear-gradient(to bottom, gray, black, gray);  */
   font-weight: bold;
-  color:#fff;
+  color: #fff;
   /* font-family: "Segoe UI", sans-serif; */
   font-family: "Roboto";
   /* font-weight: bold; */
@@ -251,7 +243,7 @@
   user-select: none;
   font-size: 14px;
   white-space: nowrap;
-  border-radius:8px;
+  border-radius: 8px;
   border: solid 3px #b5a264;
   /* border:solid 3px #000; */
   /* border-radius: 6px; */
@@ -283,7 +275,7 @@
   height: 60px;
   color: white;
   align-items: center;
-  border-radius:8px;
+  border-radius: 8px;
   border: 1px solid green;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2),
     outset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -342,10 +334,10 @@
   padding: 0 10px;
   border-radius: 6px;
 
-      font-size: 22px;
-    font-weight: bold;
-    font-family: 'arial';
-     color: lime;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "arial";
+  color: #39ff14;
 }
 
 .menu {
@@ -356,7 +348,6 @@
   gap: 12px;
   margin: 3px 20px 9px 19px;
 }
-
 
 .menuItem {
   /* border: solid 5px #b5a264; */
@@ -375,10 +366,8 @@
   transition: transform 0.2s ease;
   white-space: nowrap;
   /* box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2); */
-  box-shadow: 
-    inset 0 2px 3px rgba(255, 255, 255, 0.3),
-    inset 0 -3px 6px rgba(0, 0, 0, 0.4),
-    0 6px 8px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.4), 0 6px 8px rgba(0, 0, 0, 0.5);
 }
 
 .menuItem:hover {
@@ -479,10 +468,12 @@
 }
 
 @keyframes blink {
-  0%, 49% {
+  0%,
+  49% {
     opacity: 1;
   }
-  50%, 100% {
+  50%,
+  100% {
     opacity: 0;
   }
 }
@@ -513,8 +504,8 @@
   padding: 0px 5px;
   font-size: 21px;
   /* font-weight: bold; */
-  transition: all .2s;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+  transition: all 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* .sleepMinute:hover:not(:disabled) {
@@ -603,7 +594,7 @@
 }
 
 .radioconsole {
-  display: flex; 
+  display: flex;
   flex-direction: row;
   gap: 1px;
 }
@@ -623,18 +614,17 @@
   padding-top: 4px;
   display: flex;
   border-radius: 8px;
-  width:-webkit-fill-available;
+  width: -webkit-fill-available;
 }
 
 .sleepSection {
-  
   user-select: none;
-    border: 3px groove #a9a9a9;
-    border-radius: 8px;
-    flex-direction: column;
-    margin: 10px 15px 15px 6px;
-    padding: 5px;
-    display: flex;
+  border: 3px groove #a9a9a9;
+  border-radius: 8px;
+  flex-direction: column;
+  margin: 10px 15px 15px 6px;
+  padding: 5px;
+  display: flex;
 }
 
 .sleepNo {
@@ -644,11 +634,11 @@
   display: flex;
   justify-content: center;
   text-shadow: 1px 1px 0 #000, -1px -1px 0 #555;
-  color:#fff;
+  color: #fff;
   button {
-    width:60px;
-    border:#fff;
-    padding:10px;
+    width: 60px;
+    border: #fff;
+    padding: 10px;
     border-radius: 6px;
     background: blue;
     color: #fff;
@@ -836,5 +826,5 @@
 
 .closeMenu1 {
   /* background: linear-gradient(black, black); */
-  background: transparent
+  background: transparent;
 }
