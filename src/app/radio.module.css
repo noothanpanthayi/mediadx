@@ -45,6 +45,12 @@
   .lcd {
     display: none !important;
   }
+    .selectedMenuItem {
+    margin-top: 10px !important;
+  }
+  .grid {
+    margin-top: 68px !important;
+  }
 }
 
 .freqPanel {
