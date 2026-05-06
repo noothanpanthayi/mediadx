@@ -41,7 +41,7 @@
   }
 }
 
-@media (min-width: 3000px) and (orientation: landscape) {
+@media  (orientation: landscape) {
   .lcd {
     display: none!important;
   }
