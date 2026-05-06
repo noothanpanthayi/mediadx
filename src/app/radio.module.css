@@ -41,9 +41,10 @@
   }
 }
 
-@media  (orientation: landscape) {
+
+@media (orientation: landscape) and (min-width: 3000px) and (-webkit-device-pixel-ratio: 1) {
   .lcd {
-    display: none!important;
+    display: none !important;
   }
 }
 
