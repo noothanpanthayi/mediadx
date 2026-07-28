@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Hls from "hls.js";
 import styles from "./radio.module.css";
 import Image from "next/image";
 // import { Timestamp } from "next/dist/server/lib/cache-handlers/types";
@@ -33,7 +34,10 @@ interface RadioState {
 
 function Radio({ stations }: { stations: Station[] }) {
   const [volumeRange, setVolumeRange] = useState(10);
+  const [playbackError, setPlaybackError] = useState("");
   const audioRef = useRef<HTMLAudioElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hlsRef = useRef<Hls | null>(null);
 
   // Sleep timer state - track minutes directly
   const [sleepMinutes, setSleepMinutes] = useState<number>(0);
@@ -85,12 +89,40 @@ function Radio({ stations }: { stations: Station[] }) {
   }
 
   useEffect(() => {
-    setVolumeRange(volumeRange);
     if (audioRef.current) {
       audioRef.current.volume = volumeRange / 100;
     }
+    if (videoRef.current) {
+      videoRef.current.volume = volumeRange / 100;
+    }
+
+    const video = videoRef.current;
+    const handleVideoError = () => {
+      if (!video) return;
+      const message = video.error ? `Video playback error code=${video.error.code}` : "Video playback error";
+      console.error(message, video.error);
+      setPlaybackError(message);
+    };
+    video?.addEventListener("error", handleVideoError);
+
+    return () => {
+      video?.removeEventListener("error", handleVideoError);
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+    };
   }, []);
 
+  function isVideoStream(stream: string) {
+    return /\.m3u8(\?|$)/i.test(stream?.toLowerCase() ?? "");
+  }
+
+  function isSafariBrowser() {
+    if (typeof navigator === "undefined") return false;
+    const ua = navigator.userAgent;
+    return /Safari/.test(ua) && !/Chrome|CriOS|Chromium|Edg|Firefox|FxiOS/.test(ua);
+  }
 
   function updateSelectedMenu(category: string) {
     setState((prevState) => {
@@ -116,17 +148,117 @@ function Radio({ stations }: { stations: Station[] }) {
     if (audioRef.current) {
       audioRef.current.volume = newVolume / 100;
     }
+    if (videoRef.current) {
+      videoRef.current.volume = newVolume / 100;
+    }
   }
 
   function doPlay(station: Station) {
     const audio = audioRef.current;
+    const video = videoRef.current;
+    const isVideo = isVideoStream(station.stream);
     document.title = `${station.medianame}-${station.location || ""}`;
-    if (audio?.paused || (audio?.src && audio?.src !== station.stream)) {
+
+    if (isVideo) {
+      if (!video) return;
+      audio?.pause();
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
       updateState({
         audioLoading: true,
         selectedStation: station,
       });
-      if (audio) {
+
+      const canPlayNative =
+        video.canPlayType("application/vnd.apple.mpegurl") !== "" ||
+        video.canPlayType("application/x-mpegURL") !== "";
+
+      console.log(
+        "HLS playback start",
+        { stream: station.stream, canPlayNative, hlsSupported: Hls.isSupported() }
+      );
+
+      const startVideo = () => {
+        video.onplaying = () => {
+          updateState({
+            audioLoading: false,
+            playerOn: true,
+            showVinyl:
+              station.type.toLowerCase().includes("music") ||
+              station.category.toLowerCase().includes("music") ||
+              station.type.toLowerCase().includes("artists") ||
+              station.category.toLowerCase().includes("devotional"),
+          });
+          setPlaybackError("");
+        };
+        video
+          .play()
+          .catch((err) => {
+            console.log("Error playing video stream", err);
+            setPlaybackError(`Video play failed: ${err?.message ?? err}`);
+          });
+      };
+
+      const isSafari = isSafariBrowser();
+      const useHlsJs = Hls.isSupported() && (!canPlayNative || !isSafari);
+      console.log("HLS playback mode", { canPlayNative, isSafari, useHlsJs });
+
+      if (useHlsJs) {
+        const hls = new Hls({
+          xhrSetup: (xhr, url) => {
+            xhr.withCredentials = false;
+          },
+        });
+        hlsRef.current = hls;
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+          hls.loadSource(station.stream);
+        });
+        hls.on(Hls.Events.MANIFEST_PARSED, startVideo);
+        hls.on(Hls.Events.ERROR, (event, data) => {
+          const message = `HLS error type=${data.type} details=${data.details} fatal=${data.fatal}`;
+          console.error("HLS error", message, event, data);
+          if (!data.fatal) {
+            // Non-fatal HLS warnings like bufferStalledError can be recovered.
+            return;
+          }
+          setPlaybackError(message);
+          switch (data.type) {
+            case Hls.ErrorTypes.NETWORK_ERROR:
+              console.error("HLS network error, trying recover...");
+              hls.startLoad();
+              break;
+            case Hls.ErrorTypes.MEDIA_ERROR:
+              console.error("HLS media error, trying recover...");
+              hls.recoverMediaError();
+              break;
+            default:
+              hls.destroy();
+              break;
+          }
+        });
+      } else {
+        video.src = station.stream;
+        video.load();
+        startVideo();
+      }
+    } else {
+      if (!audio) return;
+      const shouldPlay =
+        audio.paused || (audio.src && audio.src !== station.stream);
+      video?.pause();
+      if (hlsRef.current) {
+        hlsRef.current.destroy();
+        hlsRef.current = null;
+      }
+
+      if (shouldPlay) {
+        updateState({
+          audioLoading: true,
+          selectedStation: station,
+        });
         audio.src = station.stream;
         audio.onplaying = () => {
           updateState({
@@ -141,17 +273,18 @@ function Radio({ stations }: { stations: Station[] }) {
         };
         audio.play().catch((err) => {
           console.log("Error ", err);
+          setPlaybackError(`Audio play failed: ${err?.message ?? err}`);
+        });
+      } else {
+        audio.pause();
+        setState((prevState) => {
+          return {
+            ...prevState,
+            playerOn: false,
+            audioLoading: false,
+          };
         });
       }
-    } else {
-      audio?.pause();
-      setState((prevState) => {
-        return {
-          ...prevState,
-          playerOn: false,
-          audioLoading: false,
-        };
-      });
     }
   }
 
@@ -179,38 +312,34 @@ function Radio({ stations }: { stations: Station[] }) {
   }
 
   function muteRadio() {
-    const audio = audioRef?.current;
-    if (!audio) return;
+    const isVideo = isVideoStream(state.selectedStation.stream);
+    const media = isVideo ? videoRef.current : audioRef.current;
+    if (!media) return;
 
-    if (audio.paused) {
-      audio.play();
-      setState((prevState) => {
-        return {
-          ...prevState,
-          playerOn: true,
-        };
-      });
+    if (media.paused) {
+      media.play();
+      setState((prevState) => ({
+        ...prevState,
+        playerOn: true,
+      }));
     } else {
-      audio.pause();
-      setState((prevState) => {
-        return {
-          ...prevState,
-          playerOn: false,
-        };
-      });
+      media.pause();
+      setState((prevState) => ({
+        ...prevState,
+        playerOn: false,
+      }));
     }
   }
 
   function stopRadio() {
-    const audio = audioRef?.current;
-    if (!audio) return;
-    audio.pause();
-    setState((prevState) => {
-      return {
-        ...prevState,
-        playerOn: false,
-      };
-    });
+    const isVideo = isVideoStream(state.selectedStation.stream);
+    const media = isVideo ? videoRef.current : audioRef.current;
+    if (!media) return;
+    media.pause();
+    setState((prevState) => ({
+      ...prevState,
+      playerOn: false,
+    }));
   }
 
   function showDateTime() {
@@ -283,7 +412,18 @@ function Radio({ stations }: { stations: Station[] }) {
 
   return (
     <>
-      <audio ref={audioRef} />
+      <audio ref={audioRef} style={{ display: "none" }} />
+      <video
+        ref={videoRef}
+        playsInline
+        style={{
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      />
       <div className={radio}>
         <div className={headerSection}>
           <div className={titlePanel}>
@@ -420,6 +560,21 @@ function Radio({ stations }: { stations: Station[] }) {
               </div>
             </li>
           </ul>
+          {playbackError && (
+            <div
+              style={{
+                color: "#ff6666",
+                background: "rgba(255, 0, 0, 0.08)",
+                padding: "8px 12px",
+                borderRadius: "8px",
+                marginTop: "12px",
+                fontSize: "0.9rem",
+                lineHeight: 1.4,
+              }}
+            >
+              <strong>Playback issue:</strong> {playbackError}
+            </div>
+          )}
 
           {/* <div
           id="volumePanel"
