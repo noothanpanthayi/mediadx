@@ -220,10 +220,18 @@ function Radio({ stations }: { stations: Station[] }) {
         hls.on(Hls.Events.ERROR, (event, data) => {
           const message = `HLS error type=${data.type} details=${data.details} fatal=${data.fatal}`;
           console.error("HLS error", message, event, data);
-          if (!data.fatal) {
-            // Non-fatal HLS warnings like bufferStalledError can be recovered.
+          const isIgnoredManifestError =
+            data.fatal &&
+            data.type === Hls.ErrorTypes.NETWORK_ERROR &&
+            data.details === Hls.ErrorDetails.MANIFEST_LOAD_ERROR;
+
+          if (!data.fatal || isIgnoredManifestError) {
+            if (isIgnoredManifestError) {
+              console.warn("Ignored fatal HLS manifest load error", message);
+            }
             return;
           }
+
           setPlaybackError(message);
           switch (data.type) {
             case Hls.ErrorTypes.NETWORK_ERROR:
