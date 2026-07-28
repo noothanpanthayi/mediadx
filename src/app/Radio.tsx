@@ -568,7 +568,7 @@ function Radio({ stations }: { stations: Station[] }) {
               </div>
             </li>
           </ul>
-          {playbackError && (
+          {/* {playbackError && (
             <div
               style={{
                 color: "#ff6666",
@@ -582,7 +582,7 @@ function Radio({ stations }: { stations: Station[] }) {
             >
               <strong>Playback issue:</strong> {playbackError}
             </div>
-          )}
+          )} */}
 
           {/* <div
           id="volumePanel"
